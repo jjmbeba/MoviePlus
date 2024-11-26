@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import "./globals.css";
 import {Doto} from 'next/font/google'
 import Navbar from "@/app/components/navbar";
+import {ThemeProvider} from "@/app/components/theme-provider";
 
 export const metadata: Metadata = {
     title: "MoviePlus",
@@ -20,8 +21,15 @@ export default function RootLayout({
         <body
             className={`${doto.className} antialiased`}
         >
-        <Navbar/>
-        {children}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+        >
+            <Navbar/>
+            {children}
+        </ThemeProvider>
         </body>
         </html>
     );

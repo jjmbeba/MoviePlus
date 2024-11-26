@@ -5,11 +5,11 @@ import AuthSection from "@/app/components/auth-section";
 
 const Navbar = () => {
     return (
-        <div className={'px-20 py-5 border border-red-600 flex items-center justify-between'}>
+        <nav className={'px-20 py-5 border border-red-600 flex items-center justify-between'}>
             <Logo/>
             <NavLinks/>
             <AuthSection/>
-        </div>
+        </nav>
     )
 }
 export default Navbar
