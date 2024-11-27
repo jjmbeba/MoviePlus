@@ -1,11 +1,10 @@
 import PopularMovies from "@/app/components/movies/popular-movies";
-import TopRatedMovies from "@/app/components/movies/top-rated-movies";
 
 export default function Home() {
-  return (
+    return (
     <div>
         <PopularMovies/>
-        <TopRatedMovies/>
+        {/*<TopRatedMovies/>*/}
     </div>
   );
 }

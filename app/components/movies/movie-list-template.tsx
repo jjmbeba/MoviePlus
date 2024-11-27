@@ -2,15 +2,16 @@ import React from 'react'
 import {Carousel, CarouselContent, CarouselNext, CarouselPrevious} from "@/components/ui/carousel";
 import CardListItem from "@/app/components/card-list-item";
 import CardList from "@/app/components/card-list";
+import {z} from "zod";
+import {movieListSchema} from "@/trpc/schemas";
 
 type Props = {
-    title:string;
+    title: string;
     movieType: 'movies' | 'tv-series' | 'people';
-    movieData:never[]
-    
+    movieData: z.infer<typeof movieListSchema.shape.results>
 }
 
-const MovieListTemplate = ({title, movieType, movieData}:Props) => {
+const MovieListTemplate = ({title, movieType, movieData}: Props) => {
     return (
         <CardList title={title}>
             <Carousel
@@ -20,8 +21,14 @@ const MovieListTemplate = ({title, movieType, movieData}:Props) => {
                 className="w-full"
             >
                 <CarouselContent>
-                    {movieData.map((_, index) => (
-                        <CardListItem movieType={movieType} index={index} key={index}/>
+                    {movieData.map(({id, title, backdrop_path, poster_path}) => (
+                        <CardListItem
+                            movieType={movieType}
+                            title={title}
+                            id={id}
+                            backdropPath={backdrop_path}
+                            posterPath={poster_path}
+                            key={id}/>
                     ))}
                 </CarouselContent>
                 <CarouselPrevious/>

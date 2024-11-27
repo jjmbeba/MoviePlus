@@ -3,8 +3,6 @@ import BackButton from "@/app/components/back-button";
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import BookmarkButton from "@/app/components/bookmark-button";
-import Recommendations from "@/app/components/recommendations";
-import Collections from "@/app/components/collections";
 
 const Page = () => {
     return (
@@ -37,8 +35,8 @@ const Page = () => {
                     </p>
                 </div>
             </div>
-            <Recommendations/>
-            <Collections/>
+            {/*<Recommendations/>*/}
+            {/*<Collections/>*/}
         </div>
     )
 }

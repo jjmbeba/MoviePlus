@@ -8,22 +8,32 @@ import slug from "slug";
 
 //gets title, image_url, id,
 //generate url using id and slug
+type Props = {
+    title:string;
+    posterPath:string;
+    backdropPath:string;
+    id:number;
+    movieType:string
+}
 
-const CardListItem = ({index, movieType = 'movies'}:{index:number; movieType:string;}) => {
+
+const CardListItem = ({title, id, movieType = 'movies'}:Props) => {
     return (
         <CarouselItem className="md:basis-1/2 lg:basis-1/5">
             <div className="p-1">
                 <Card className={'relative'}>
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-3xl font-semibold">{index + 1}</span>
+                        <span className="text-3xl font-semibold">1</span>
                     </CardContent>
                     <BookmarkButton className={'absolute top-1 right-2'}/>
                 </Card>
             </div>
-            <Link href={`/${movieType}/${index}/${slug('title')}`} className={`${buttonVariants({
+            <Link href={`/${movieType}/${id}/${slug(title)}`} className={`${buttonVariants({
                 variant: 'link'
             })}`}>
-                Title
+                <h2 className={'w-[200px] overflow-hidden text-ellipsis whitespace-nowrap'}>
+                    {title}
+                </h2>
             </Link>
         </CarouselItem>
     )
