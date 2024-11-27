@@ -3,6 +3,9 @@ import BackButton from "@/app/components/back-button";
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import BookmarkButton from "@/app/components/bookmark-button";
+import CardList from "@/app/components/card-list";
+import Recommendations from "@/app/components/recommendations";
+import Collections from "@/app/components/collections";
 
 const Page = () => {
     return (
@@ -22,7 +25,7 @@ const Page = () => {
                         <BookmarkButton/>
                     </div>
                     <div className={'flex items-center gap-5 mt-3'}>
-                    {Array.from({length:5}).map((_, index) => (
+                        {Array.from({length: 5}).map((_, index) => (
                             <Badge key={index} variant={'outline'}>
                                 lorem
                             </Badge>
@@ -35,6 +38,8 @@ const Page = () => {
                     </p>
                 </div>
             </div>
+            <Recommendations/>
+            <Collections/>
         </div>
     )
 }

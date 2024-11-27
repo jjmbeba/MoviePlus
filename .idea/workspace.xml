@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="712000e7-e2ed-4bda-82c4-68c27ccccbc4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/components/card-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/card-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/collections.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/recommendations.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/movies/[id]/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/movies/[id]/[slug]/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +30,9 @@
     "accountId": "641d4585-2fcd-4a79-a9e7-1333e56b979f"
   }
 }]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "customColor": "",
   "associatedIndex": 4
@@ -51,6 +55,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jjmbe\OneDrive\Desktop\Next JS\movieplus\app\movies\[id]\[slug]" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -66,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1732649657086</updated>
-      <workItem from="1732649658529" duration="5013000" />
+      <workItem from="1732649658529" duration="6188000" />
     </task>
     <servers />
   </component>
