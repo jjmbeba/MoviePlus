@@ -1,7 +1,6 @@
 import React from 'react'
 import BackButton from "@/app/components/back-button";
 import {Card, CardContent} from "@/components/ui/card";
-import {Badge} from "@/components/ui/badge";
 import BookmarkButton from "@/app/components/bookmark-button";
 import {trpc} from "@/trpc/server";
 import MovieStats from "@/app/components/movie-stats";
