@@ -4,6 +4,7 @@ import {Card, CardContent} from "@/components/ui/card";
 import BookmarkButton from "@/app/components/bookmark-button";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
+import slug from "slug";
 
 const CardListItem = ({index, movieType = 'movies'}:{index:number; movieType:string;}) => {
     return (
@@ -16,7 +17,7 @@ const CardListItem = ({index, movieType = 'movies'}:{index:number; movieType:str
                     <BookmarkButton className={'absolute top-1 right-2'}/>
                 </Card>
             </div>
-            <Link href={`/${movieType}/${index}`} className={`${buttonVariants({
+            <Link href={`/${movieType}/${index}/${slug('title')}`} className={`${buttonVariants({
                 variant: 'link'
             })}`}>
                 Title
