@@ -1,26 +1,9 @@
 import React from 'react'
-import CardList from "@/app/components/card-list";
-import {Carousel, CarouselContent, CarouselNext, CarouselPrevious,} from "@/components/ui/carousel"
-import CardListItem from "@/app/components/card-list-item";
+import MovieListTemplate from "@/app/components/movies/movie-list-template";
 
 const PopularMovies = () => {
     return (
-        <CardList title={'Popular Movies'}>
-            <Carousel
-                opts={{
-                    align: "start",
-                }}
-                className="w-full"
-            >
-                <CarouselContent>
-                    {Array.from({length: 10}).map((_, index) => (
-                       <CardListItem movieType={'movies'} index={index} key={index}/>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious/>
-                <CarouselNext/>
-            </Carousel>
-        </CardList>
+        <MovieListTemplate title={'Popular Movies'} movieType={'movies'} movieData={Array.from({length: 10})}/>
     )
 }
 export default PopularMovies

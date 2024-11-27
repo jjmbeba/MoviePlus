@@ -6,6 +6,9 @@ import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import slug from "slug";
 
+//gets title, image_url, id,
+//generate url using id and slug
+
 const CardListItem = ({index, movieType = 'movies'}:{index:number; movieType:string;}) => {
     return (
         <CarouselItem className="md:basis-1/2 lg:basis-1/5">

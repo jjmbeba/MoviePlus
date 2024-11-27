@@ -3,7 +3,6 @@ import BackButton from "@/app/components/back-button";
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import BookmarkButton from "@/app/components/bookmark-button";
-import CardList from "@/app/components/card-list";
 import Recommendations from "@/app/components/recommendations";
 import Collections from "@/app/components/collections";
 
