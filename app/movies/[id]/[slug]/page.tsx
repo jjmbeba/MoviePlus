@@ -3,8 +3,21 @@ import BackButton from "@/app/components/back-button";
 import {Card, CardContent} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import BookmarkButton from "@/app/components/bookmark-button";
+import {trpc} from "@/trpc/server";
+import MovieStats from "@/app/components/movie-stats";
 
-const Page = () => {
+type Props = {
+    params: Promise<{ slug: string; id: string; }>
+}
+
+const Page = async ({params}: Props) => {
+    const movie = await trpc.movies.getMovieById({
+        id: parseInt((await params).id)
+    });
+
+    //Create a fallback page
+    if (!movie) return;
+
     return (
         <div className={'mt-10'}>
             <BackButton/>
@@ -17,21 +30,13 @@ const Page = () => {
                 <div>
                     <div className={'flex items-center justify-between'}>
                         <h1 className={'text-2xl'}>
-                            Title
+                            {movie.title}
                         </h1>
                         <BookmarkButton/>
                     </div>
-                    <div className={'flex items-center gap-5 mt-3'}>
-                        {Array.from({length: 5}).map((_, index) => (
-                            <Badge key={index} variant={'outline'}>
-                                lorem
-                            </Badge>
-                        ))}
-                    </div>
+                    <MovieStats runtime={movie.runtime} />
                     <p className={'max-w-lg mt-5'}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, aspernatur culpa deserunt
-                        dicta dolorem doloremque doloribus eaque et eum illo necessitatibus numquam quasi quidem
-                        temporibus voluptate! Architecto consectetur culpa dolorem.
+                        {movie.overview}
                     </p>
                 </div>
             </div>

@@ -1,9 +1,14 @@
 import React from 'react'
 import MovieListTemplate from "@/app/components/movies/movie-list-template";
+import {trpc} from "@/trpc/server";
 
-const TopRatedMovies = () => {
+const TopRatedMovies = async () => {
+    const topRatedMovies = await trpc.movies.getMovieList({
+        listType: 'top_rated'
+    })
+
     return (
-        <MovieListTemplate title={'Top Rated Movies'} movieType={'movies'} movieData={Array.from({length:10})}/>
+        <MovieListTemplate title={'Top Rated Movies'} movieType={'movies'} movieData={topRatedMovies.results}/>
     )
 }
 export default TopRatedMovies
