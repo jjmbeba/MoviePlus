@@ -6,6 +6,7 @@ import {trpc} from "@/trpc/server";
 import MovieStats from "@/app/components/movie-stats";
 import Collections from "@/app/components/collections";
 import Recommendations from "@/app/components/recommendations";
+import ReviewsList from "@/app/components/reviews/reviews-list";
 
 type Props = {
     params: Promise<{ slug: string; id: string; }>
@@ -41,6 +42,7 @@ const Page = async ({params}: Props) => {
                     </p>
                 </div>
             </div>
+            <ReviewsList/>
             {movie.belongs_to_collection &&
                 (<Collections
                     name={movie.belongs_to_collection.name}
