@@ -80,3 +80,59 @@ export const movieDetailSchema = z.object({
     vote_average: z.number(),
     vote_count: z.number(),
 });
+
+export const partSchema = z.object({
+    backdrop_path: z.string(),
+    id: z.number(),
+    title: z.string(),
+    original_title: z.string(),
+    overview: z.string(),
+    poster_path: z.string(),
+    media_type: z.string(),
+    adult: z.boolean(),
+    original_language: z.string(),
+    genre_ids: z.number().array(),
+    popularity: z.number(),
+    release_date: z.string(),
+    video: z.boolean(),
+    vote_average: z.number(),
+    vote_count: z.number(),
+});
+
+// Schema for CollectionDetail
+export const collectionDetailSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    overview: z.string(),
+    poster_path: z.string(),
+    backdrop_path: z.string(),
+    parts: partSchema.array(),
+});
+
+export const mediaTypeSchema = z.enum(['movie', 'tv']);
+
+export const recommendationSchema = z.object({
+    backdrop_path: z.string(),
+    id: z.number(),
+    title: z.string(),
+    original_title: z.string(),
+    overview: z.string(),
+    poster_path: z.string(),
+    media_type: mediaTypeSchema,
+    adult: z.boolean(),
+    original_language: z.string(),
+    genre_ids: z.number().array(),
+    popularity: z.number(),
+    release_date: z.string(),
+    video: z.boolean(),
+    vote_average: z.number(),
+    vote_count: z.number(),
+});
+
+// Schema for Recommendations
+export const recommendationsSchema = z.object({
+    page: z.number(),
+    results: recommendationSchema.array(),
+    total_pages: z.number(),
+    total_results: z.number(),
+});

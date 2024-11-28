@@ -13,11 +13,11 @@ type Props = {
     posterPath:string;
     backdropPath:string;
     id:number;
-    movieType:string
+    mediaType:string
 }
 
 
-const CardListItem = ({title, id, movieType = 'movies'}:Props) => {
+const CardListItem = ({title, id, mediaType = 'movies'}:Props) => {
     return (
         <CarouselItem className="md:basis-1/2 lg:basis-1/5">
             <div className="p-1">
@@ -28,7 +28,7 @@ const CardListItem = ({title, id, movieType = 'movies'}:Props) => {
                     <BookmarkButton className={'absolute top-1 right-2'}/>
                 </Card>
             </div>
-            <Link href={`/${movieType}/${id}/${slug(title)}`} className={`${buttonVariants({
+            <Link href={`/${mediaType}/${id}/${slug(title)}`} className={`${buttonVariants({
                 variant: 'link'
             })}`}>
                 <h2 className={'w-[200px] overflow-hidden text-ellipsis whitespace-nowrap'}>

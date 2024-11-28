@@ -4,6 +4,8 @@ import {Card, CardContent} from "@/components/ui/card";
 import BookmarkButton from "@/app/components/bookmark-button";
 import {trpc} from "@/trpc/server";
 import MovieStats from "@/app/components/movie-stats";
+import Collections from "@/app/components/collections";
+import Recommendations from "@/app/components/recommendations";
 
 type Props = {
     params: Promise<{ slug: string; id: string; }>
@@ -33,14 +35,18 @@ const Page = async ({params}: Props) => {
                         </h1>
                         <BookmarkButton/>
                     </div>
-                    <MovieStats runtime={movie.runtime} />
+                    <MovieStats runtime={movie.runtime} genres={movie.genres} />
                     <p className={'max-w-lg mt-5'}>
                         {movie.overview}
                     </p>
                 </div>
             </div>
-            {/*<Recommendations/>*/}
-            {/*<Collections/>*/}
+            {movie.belongs_to_collection &&
+                (<Collections
+                    name={movie.belongs_to_collection.name}
+                    collectionId={movie.belongs_to_collection.id}
+                />)}
+            <Recommendations recordId={movie.id}/>
         </div>
     )
 }

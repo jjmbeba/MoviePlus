@@ -23,7 +23,7 @@ const MovieListTemplate = ({title, movieType, movieData}: Props) => {
                 <CarouselContent>
                     {movieData.map(({id, title, backdrop_path, poster_path}) => (
                         <CardListItem
-                            movieType={movieType}
+                            mediaType={movieType}
                             title={title}
                             id={id}
                             backdropPath={backdrop_path}
