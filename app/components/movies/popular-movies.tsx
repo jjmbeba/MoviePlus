@@ -8,7 +8,7 @@ const PopularMovies = async () => {
     });
 
     return (
-        <MovieListTemplate title={'Popular Movies'} movieType={'movies'} movieData={popularMovies.results}/>
+        <MovieListTemplate title={'Popular Movies'} mediaType={'movies'} movieData={popularMovies.results}/>
     )
 }
 export default PopularMovies

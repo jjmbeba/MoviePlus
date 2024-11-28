@@ -1,14 +1,7 @@
 import {z} from 'zod';
 import {baseProcedure, createTRPCRouter} from '../init';
-import {collectionDetailSchema} from "@/trpc/schemas";
-
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.TMDB_BEARER_TOKEN}`
-    }
-};
+import {collectionDetailSchema} from "@/trpc/schemas/movies";
+import {FETCH_OPTIONS} from "@/trpc/routers/constants";
 
 export const collectionsRouter = createTRPCRouter({
     getCollectionById: baseProcedure.input(
@@ -17,7 +10,7 @@ export const collectionsRouter = createTRPCRouter({
         })
     ).query(async ({input}) => {
         const res = await fetch(`${process.env.TMDB_BASE_URL}/collection/${input.id}?language=en-US`, {
-            ...options
+            ...FETCH_OPTIONS
         }).then((res) => res.json()).catch((err) => console.error(err));
 
         return collectionDetailSchema.parse(res);

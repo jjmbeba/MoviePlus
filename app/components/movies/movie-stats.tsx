@@ -2,7 +2,7 @@ import React from 'react'
 import {Badge} from "@/components/ui/badge";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration"
-import {movieDetailSchema} from "@/trpc/schemas";
+import {movieDetailSchema} from "@/trpc/schemas/movies";
 import {z} from "zod";
 
 type Props = {

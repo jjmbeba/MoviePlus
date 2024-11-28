@@ -3,15 +3,15 @@ import {Carousel, CarouselContent, CarouselNext, CarouselPrevious} from "@/compo
 import CardListItem from "@/app/components/card-list-item";
 import CardList from "@/app/components/card-list";
 import {z} from "zod";
-import {movieListSchema} from "@/trpc/schemas/movies";
+import {tvListSchema} from "@/trpc/schemas/tv";
 
 type Props = {
     title: string;
     mediaType: 'movies' | 'tv';
-    movieData: z.infer<typeof movieListSchema.shape.results>
+    tvData: z.infer<typeof tvListSchema.shape.results>
 }
 
-const MovieListTemplate = ({title, mediaType, movieData}: Props) => {
+const TvListTemplate = ({title, mediaType, tvData}: Props) => {
     return (
         <CardList title={title}>
             <Carousel
@@ -21,12 +21,12 @@ const MovieListTemplate = ({title, mediaType, movieData}: Props) => {
                 className="w-full"
             >
                 <CarouselContent>
-                    {movieData.map(({id, title, backdrop_path, poster_path}) => (
+                    {tvData.map(({id, name, backdrop_path, poster_path}) => (
                         <CardListItem
                             mediaType={mediaType}
-                            title={title}
+                            title={name}
                             id={id}
-                            backdropPath={backdrop_path}
+                            backdropPath={backdrop_path ?? ''}
                             posterPath={poster_path}
                             key={id}/>
                     ))}
@@ -37,4 +37,4 @@ const MovieListTemplate = ({title, mediaType, movieData}: Props) => {
         </CardList>
     )
 }
-export default MovieListTemplate
+export default TvListTemplate

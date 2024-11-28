@@ -132,7 +132,7 @@ export const recommendationSchema = z.object({
 // Schema for Recommendations
 export const recommendationsSchema = z.object({
     page: z.number(),
-    results: recommendationSchema.array(),
+    results: recommendationSchema.array().nullable(),
     total_pages: z.number(),
     total_results: z.number(),
 });

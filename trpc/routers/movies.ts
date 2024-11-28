@@ -1,20 +1,13 @@
 import {z} from 'zod';
 import {baseProcedure, createTRPCRouter} from '../init';
-import {movieDetailSchema, movieListSchema, recommendationsSchema} from "@/trpc/schemas";
-
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${process.env.TMDB_BEARER_TOKEN}`
-    }
-};
+import {movieDetailSchema, movieListSchema, recommendationsSchema} from "@/trpc/schemas/movies";
+import {FETCH_OPTIONS} from "@/trpc/routers/constants";
 
 export const moviesRouter = createTRPCRouter({
     getMovieList: baseProcedure.input(
         z.object({listType: z.enum(['popular', 'top_rated', 'now_playing', 'upcoming'])})
     ).query(async ({input}) => {
-        const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${input.listType}?language=en-US&page=1`, {...options}).then((res) => res.json()).catch((err) => console.error(err));
+        const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${input.listType}?language=en-US&page=1`, {...FETCH_OPTIONS}).then((res) => res.json()).catch((err) => console.error(err));
 
         return movieListSchema.parse(res);
     }),
@@ -24,7 +17,7 @@ export const moviesRouter = createTRPCRouter({
         })
     ).query(async ({input}) => {
         const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${input.id}`, {
-            ...options
+            ...FETCH_OPTIONS
         }).then((res) => res.json()).catch((err) => console.error(err));
 
         return movieDetailSchema.parse(res);
@@ -35,7 +28,7 @@ export const moviesRouter = createTRPCRouter({
         })
     ).query(async ({input}) => {
         const res = await fetch(`${process.env.TMDB_BASE_URL}/movie/${input.id}/recommendations?language=en-US&page=1`, {
-            ...options
+            ...FETCH_OPTIONS
         }).then((res) => res.json()).catch((err) => console.error(err));
 
         return recommendationsSchema.parse(res);
