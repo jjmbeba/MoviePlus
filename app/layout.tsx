@@ -5,6 +5,8 @@ import Navbar from "@/app/components/navbar";
 import {ThemeProvider} from "@/app/components/theme-provider";
 import {TRPCProvider} from "@/trpc/client";
 import {ClerkProvider} from '@clerk/nextjs'
+import {dark} from '@clerk/themes'
+import QueryProvider from "@/app/providers/QueryProvider";
 
 export const metadata: Metadata = {
     title: "MoviePlus",
@@ -19,26 +21,32 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-       <ClerkProvider>
-           <TRPCProvider>
-               <html lang="en">
-               <body
-                   className={`${doto.className} antialiased`}
-               >
-               <ThemeProvider
-                   attribute="class"
-                   defaultTheme="dark"
-                   enableSystem
-                   disableTransitionOnChange
-               >
-                   <Navbar/>
-                   <div className={'px-20'}>
-                       {children}
-                   </div>
-               </ThemeProvider>
-               </body>
-               </html>
-           </TRPCProvider>
-       </ClerkProvider>
+       <QueryProvider>
+           <ClerkProvider
+               appearance={{
+                   baseTheme:dark
+               }}
+           >
+               <TRPCProvider>
+                   <html lang="en">
+                   <body
+                       className={`${doto.className} antialiased`}
+                   >
+                   <ThemeProvider
+                       attribute="class"
+                       defaultTheme="dark"
+                       enableSystem
+                       disableTransitionOnChange
+                   >
+                       <Navbar/>
+                       <div className={'px-20'}>
+                           {children}
+                       </div>
+                   </ThemeProvider>
+                   </body>
+                   </html>
+               </TRPCProvider>
+           </ClerkProvider>
+       </QueryProvider>
     );
 }

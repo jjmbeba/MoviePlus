@@ -7,7 +7,7 @@ export default function Page() {
             <div className={'mb-4 flex justify-start w-full'}>
                 <BackButton/>
             </div>
-            <SignIn/>
+            <SignIn />
         </div>
     </div>
 }

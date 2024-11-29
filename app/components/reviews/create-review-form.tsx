@@ -11,39 +11,46 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {Textarea} from "@/components/ui/textarea";
+import {useAuth} from "@clerk/nextjs";
 
 const createEventSchema = z.object({
     title: z.string().min(2).max(50),
     rating: z.string().transform((rating) => parseInt(rating)),
-    body:z.string().min(2, {
-        message:"Body must be at least 2 characters"
+    body: z.string().min(2, {
+        message: "Body must be at least 2 characters"
     }),
-    recordId:z.number(),
-    mediaType:z.string()
+    recordId: z.number(),
+    mediaType: z.string(),
 })
 
 type Props = {
-    recordId:number;
-    mediaType:string;
+    recordId: number;
+    mediaType: string;
 }
 
-const CreateReviewForm = ({recordId, mediaType}:Props) => {
+const CreateReviewForm = ({recordId, mediaType}: Props) => {
     const form = useForm<z.infer<typeof createEventSchema>>({
         resolver: zodResolver(createEventSchema),
         defaultValues: {
             title: "",
             rating: 1,
-            body:"",
+            body: "",
             recordId,
-            mediaType
+            mediaType,
         },
-    })
+    });
+
+    const {userId} = useAuth();
+    if (!userId) return;
 
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof createEventSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+        console.log({
+            ...values,
+            userId
+        })
     }
 
     return (
@@ -78,7 +85,8 @@ const CreateReviewForm = ({recordId, mediaType}:Props) => {
                                     render={({field}) => (
                                         <FormItem>
                                             <FormLabel>Rating</FormLabel>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value.toString()}>
+                                            <Select onValueChange={field.onChange}
+                                                    defaultValue={field.value.toString()}>
                                                 <FormControl>
                                                     <SelectTrigger>
                                                         <SelectValue placeholder="Select a rating"/>
@@ -101,7 +109,7 @@ const CreateReviewForm = ({recordId, mediaType}:Props) => {
                             <FormField
                                 control={form.control}
                                 name="body"
-                                render={({ field }) => (
+                                render={({field}) => (
                                     <FormItem>
                                         <FormLabel>Body</FormLabel>
                                         <FormControl>
@@ -111,7 +119,7 @@ const CreateReviewForm = ({recordId, mediaType}:Props) => {
                                                 {...field}
                                             />
                                         </FormControl>
-                                        <FormMessage />
+                                        <FormMessage/>
                                     </FormItem>
                                 )}
                             />
