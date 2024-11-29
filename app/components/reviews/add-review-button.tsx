@@ -6,10 +6,12 @@ import {PlusCircle} from "lucide-react";
 const AddReviewButton = () => {
     const isUserSignedIn = true;
     return isUserSignedIn ? (
-        <Button variant={'outline'}>
+        <div className={buttonVariants({
+            variant:'outline'
+        })}>
             <PlusCircle/>
             Add review
-        </Button>
+        </div>
     ) : (
         <Link className={buttonVariants({
             variant: 'link'

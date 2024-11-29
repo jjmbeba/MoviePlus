@@ -20,7 +20,7 @@ const SeriesStats = ({voteAverage, genres, numberOfSeasons, numberOfEpisodes}:Pr
                 'border-orange-500 text-orange-500':voteAverage >= 2.5 && voteAverage < 5,
                 'border-red-500 text-red-500':voteAverage >= 0 && voteAverage < 2.5
             })}>
-                {voteAverage}
+                {voteAverage.toFixed(1)}
             </Badge>
             <Badge variant={'outline'}>
                 {numberOfSeasons > 1 ? `${numberOfSeasons} seasons` : '1 season'}
