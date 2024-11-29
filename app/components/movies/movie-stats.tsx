@@ -18,7 +18,7 @@ const MovieStats = ({runtime, genres}: Props) => {
     const minutes = dayjs.duration(runtime, 'minutes').minutes();
 
     return (
-        <div className={'flex items-center gap-2 mt-3'}>
+        <div className={'flex flex-wrap items-center gap-2 mt-3'}>
             <Badge variant={'outline'}>
                 {generateDurationText(hours, 'hours')} {generateDurationText(minutes, 'minutes')}
             </Badge>

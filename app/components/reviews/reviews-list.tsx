@@ -1,5 +1,7 @@
 import React from 'react'
 import AddReviewButton from "@/app/components/reviews/add-review-button";
+import StarRating from "@/app/components/reviews/star-rating";
+import ReviewListItem from "@/app/components/reviews/review-list-item";
 
 const ReviewsList = () => {
     return (
@@ -10,6 +12,9 @@ const ReviewsList = () => {
                 </h2>
                 <AddReviewButton/>
             </div>
+            {Array.from({length:5}).map((_,index) => (
+                <ReviewListItem key={`review-${index}`} />
+            ))}
         </div>
     )
 }

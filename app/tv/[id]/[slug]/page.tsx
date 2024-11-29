@@ -15,7 +15,6 @@ const Page = async ({params}: Props) => {
     const series = await trpc.tv.getTvSeriesById({
         id: parseInt((await params).id)
     });
-    console.log(series)
 
     return (
         <div className={'mt-10'}>

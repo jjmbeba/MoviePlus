@@ -11,7 +11,7 @@ type Props = {
 
 const SeriesStats = ({genres, numberOfSeasons, numberOfEpisodes}:Props) => {
     return (
-        <div className={'flex items-center gap-2 mt-3'}>
+        <div className={'flex items-center flex-wrap gap-2 mt-3'}>
             <Badge variant={'outline'}>
                 {numberOfSeasons > 1 ? `${numberOfSeasons} seasons` : '1 season'}
             </Badge>
