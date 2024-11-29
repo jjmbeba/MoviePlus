@@ -1,6 +1,6 @@
 import React from 'react'
-import AddReviewButton from "@/app/components/reviews/add-review-button";
 import ReviewListItem from "@/app/components/reviews/review-list-item";
+import CreateReviewForm from "@/app/components/reviews/create-review-form";
 
 const ReviewsList = () => {
     return (
@@ -9,7 +9,7 @@ const ReviewsList = () => {
                 <h2 className={'font-bold text-2xl'}>
                     Reviews
                 </h2>
-                <AddReviewButton/>
+                <CreateReviewForm/>
             </div>
             {Array.from({length:5}).map((_,index) => (
                 <ReviewListItem key={`review-${index}`} />

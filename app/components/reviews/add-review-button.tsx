@@ -4,7 +4,7 @@ import {Button, buttonVariants} from "@/components/ui/button";
 import {PlusCircle} from "lucide-react";
 
 const AddReviewButton = () => {
-    const isUserSignedIn = false;
+    const isUserSignedIn = true;
     return isUserSignedIn ? (
         <Button variant={'outline'}>
             <PlusCircle/>
