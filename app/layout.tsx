@@ -7,6 +7,8 @@ import {TRPCProvider} from "@/trpc/client";
 import {ClerkProvider} from '@clerk/nextjs'
 import {dark} from '@clerk/themes'
 import QueryProvider from "@/app/providers/QueryProvider";
+import { Toaster } from "@/components/ui/sonner"
+import {Toast} from "next/dist/client/components/react-dev-overlay/internal/components/Toast";
 
 export const metadata: Metadata = {
     title: "MoviePlus",
@@ -43,6 +45,7 @@ export default function RootLayout({
                            {children}
                        </div>
                    </ThemeProvider>
+                   <Toaster richColors />
                    </body>
                    </html>
                </TRPCProvider>

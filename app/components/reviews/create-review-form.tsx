@@ -12,16 +12,10 @@ import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {Textarea} from "@/components/ui/textarea";
 import {useAuth} from "@clerk/nextjs";
-
-const createEventSchema = z.object({
-    title: z.string().min(2).max(50),
-    rating: z.string().transform((rating) => parseInt(rating)),
-    body: z.string().min(2, {
-        message: "Body must be at least 2 characters"
-    }),
-    recordId: z.number(),
-    mediaType: z.string(),
-})
+import {createReviewSchema} from "@/trpc/schemas/reviews";
+import {trpc} from "@/trpc/client";
+import {toast} from 'sonner';
+import {Loader} from "lucide-react";
 
 type Props = {
     recordId: number;
@@ -29,8 +23,13 @@ type Props = {
 }
 
 const CreateReviewForm = ({recordId, mediaType}: Props) => {
-    const form = useForm<z.infer<typeof createEventSchema>>({
-        resolver: zodResolver(createEventSchema),
+    const {mutate: addReview, isPending} = trpc.reviews.addReview.useMutation({
+        onSuccess:({message}) => {
+            toast.success(message);
+        }
+    });
+    const form = useForm<z.infer<typeof createReviewSchema>>({
+        resolver: zodResolver(createReviewSchema),
         defaultValues: {
             title: "",
             rating: 1,
@@ -43,11 +42,13 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
     const {userId} = useAuth();
     if (!userId) return;
 
+
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof createEventSchema>) {
+    function onSubmit(values: z.infer<typeof createReviewSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log({
+        if (!userId) return;
+        addReview({
             ...values,
             userId
         })
@@ -123,7 +124,8 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit">
+                            <Button disabled={isPending} type="submit">
+                                {isPending && <Loader className={'animate-spin'}/>}
                                 Create
                             </Button>
                         </form>
