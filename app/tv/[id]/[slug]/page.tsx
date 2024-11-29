@@ -38,7 +38,7 @@ const Page = async ({params}: Props) => {
                     </p>
                 </div>
             </div>
-            <ReviewsList/>
+            <ReviewsList recordId={series.id} mediaType={'tv'} />
             <Recommendations mediaType={'tv'} recordId={series.id}/>
         </div>
     )
