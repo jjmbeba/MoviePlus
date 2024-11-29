@@ -1,6 +1,5 @@
 import React from 'react'
 import AddReviewButton from "@/app/components/reviews/add-review-button";
-import StarRating from "@/app/components/reviews/star-rating";
 import ReviewListItem from "@/app/components/reviews/review-list-item";
 
 const ReviewsList = () => {

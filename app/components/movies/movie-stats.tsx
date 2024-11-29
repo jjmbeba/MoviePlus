@@ -4,21 +4,31 @@ import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration"
 import {movieDetailSchema} from "@/trpc/schemas/movies";
 import {z} from "zod";
+import {clsx} from "clsx";
 
 type Props = {
     runtime: number;
-    genres: z.infer<typeof movieDetailSchema.shape.genres>
+    genres: z.infer<typeof movieDetailSchema.shape.genres>;
+    voteAverage:number;
 }
 
 dayjs.extend(duration);
 
 
-const MovieStats = ({runtime, genres}: Props) => {
+const MovieStats = ({runtime, genres, voteAverage}: Props) => {
     const hours = dayjs.duration(runtime, 'minutes').hours();
     const minutes = dayjs.duration(runtime, 'minutes').minutes();
 
     return (
         <div className={'flex flex-wrap items-center gap-2 mt-3'}>
+            <Badge variant={'outline'} className={clsx({
+                'border-green-500 text-green-500': voteAverage >= 7.5,
+                'border-yellow-500 text-yellow-500':voteAverage >= 5 && voteAverage < 7.5,
+                'border-orange-500 text-orange-500':voteAverage >= 2.5 && voteAverage < 5,
+                'border-red-500 text-red-500':voteAverage >= 0 && voteAverage < 2.5
+            })}>
+                {voteAverage}
+            </Badge>
             <Badge variant={'outline'}>
                 {generateDurationText(hours, 'hours')} {generateDurationText(minutes, 'minutes')}
             </Badge>

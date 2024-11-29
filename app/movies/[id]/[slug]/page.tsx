@@ -36,7 +36,7 @@ const Page = async ({params}: Props) => {
                         </h1>
                         <BookmarkButton/>
                     </div>
-                    <MovieStats runtime={movie.runtime} genres={movie.genres} />
+                    <MovieStats runtime={movie.runtime} genres={movie.genres} voteAverage={movie.vote_average} />
                     <p className={'max-w-lg mt-5'}>
                         {movie.overview}
                     </p>

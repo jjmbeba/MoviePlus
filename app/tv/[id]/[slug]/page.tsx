@@ -32,7 +32,7 @@ const Page = async ({params}: Props) => {
                         </h1>
                         <BookmarkButton/>
                     </div>
-                    <SeriesStats numberOfSeasons={series.number_of_seasons} numberOfEpisodes={series.number_of_episodes} genres={series.genres} />
+                    <SeriesStats voteAverage={series.vote_average} numberOfSeasons={series.number_of_seasons} numberOfEpisodes={series.number_of_episodes} genres={series.genres} />
                     <p className={'max-w-lg mt-5'}>
                         {series.overview}
                     </p>
