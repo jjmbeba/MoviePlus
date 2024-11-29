@@ -5,12 +5,12 @@ import {buttonVariants} from "@/components/ui/button";
 const AuthSection = () => {
     return (
         <div>
-            <Link href={'/register'} className={buttonVariants({
+            <Link href={'/sign-up'} className={buttonVariants({
                 variant: 'outline'
             })}>
                 Register
             </Link>
-            <Link href={'/login'} className={buttonVariants({
+            <Link href={'/sign-in'} className={buttonVariants({
                 variant: 'link'
             })}>
                 Login

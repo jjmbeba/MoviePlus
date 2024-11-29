@@ -11,3 +11,7 @@ export const NAVLINKS = [
         text: "TV Series"
     }
 ];
+
+export const EXCLUDED_NAV_ROUTES = [
+    '/sign-up', '/sign-in'
+];
