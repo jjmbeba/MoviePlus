@@ -4,13 +4,7 @@ import {Doto} from 'next/font/google'
 import Navbar from "@/app/components/navbar";
 import {ThemeProvider} from "@/app/components/theme-provider";
 import {TRPCProvider} from "@/trpc/client";
-import {
-    ClerkProvider,
-    SignInButton,
-    SignedIn,
-    SignedOut,
-    UserButton
-} from '@clerk/nextjs'
+import {ClerkProvider} from '@clerk/nextjs'
 
 export const metadata: Metadata = {
     title: "MoviePlus",
