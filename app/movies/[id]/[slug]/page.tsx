@@ -42,7 +42,7 @@ const Page = async ({params}: Props) => {
                     </p>
                 </div>
             </div>
-            <ReviewsList/>
+            <ReviewsList recordId={movie.id} mediaType={'movie'} />
             {movie.belongs_to_collection &&
                 (<Collections
                     name={movie.belongs_to_collection.name}

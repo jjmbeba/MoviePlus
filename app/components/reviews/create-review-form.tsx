@@ -14,19 +14,28 @@ import {Textarea} from "@/components/ui/textarea";
 
 const createEventSchema = z.object({
     title: z.string().min(2).max(50),
-    rating: z.string(),
+    rating: z.string().transform((rating) => parseInt(rating)),
     body:z.string().min(2, {
         message:"Body must be at least 2 characters"
-    })
+    }),
+    recordId:z.number(),
+    mediaType:z.string()
 })
 
-const CreateReviewForm = () => {
+type Props = {
+    recordId:number;
+    mediaType:string;
+}
+
+const CreateReviewForm = ({recordId, mediaType}:Props) => {
     const form = useForm<z.infer<typeof createEventSchema>>({
         resolver: zodResolver(createEventSchema),
         defaultValues: {
             title: "",
-            rating: "",
-            body:""
+            rating: 1,
+            body:"",
+            recordId,
+            mediaType
         },
     })
 
@@ -69,7 +78,7 @@ const CreateReviewForm = () => {
                                     render={({field}) => (
                                         <FormItem>
                                             <FormLabel>Rating</FormLabel>
-                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value.toString()}>
                                                 <FormControl>
                                                     <SelectTrigger>
                                                         <SelectValue placeholder="Select a rating"/>
