@@ -11,7 +11,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {Textarea} from "@/components/ui/textarea";
-import {useAuth, useUser} from "@clerk/nextjs";
+import {useUser} from "@clerk/nextjs";
 import {createReviewSchema} from "@/trpc/schemas/reviews";
 import {trpc} from "@/trpc/client";
 import {toast} from 'sonner';
