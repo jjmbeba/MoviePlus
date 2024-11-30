@@ -3,6 +3,7 @@ import {moviesRouter} from "@/trpc/routers/movies";
 import {collectionsRouter} from "@/trpc/routers/collections";
 import {tvRouter} from "@/trpc/routers/tv";
 import {reviewsRouter} from "@/trpc/routers/reviews";
+import {inferRouterOutputs} from "@trpc/server";
 
 export const appRouter = createTRPCRouter({
   movies:moviesRouter,
@@ -12,3 +13,4 @@ export const appRouter = createTRPCRouter({
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;
+export type RouterOutputs = inferRouterOutputs<AppRouter>
