@@ -14,34 +14,45 @@ import {trpc} from "@/trpc/client";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {Loader} from "lucide-react";
+import {useAuth} from "@clerk/nextjs";
+import {useRouter} from "next/navigation";
 
 type Props = {
-    review: RouterOutputs['reviews']['getReviewsByRecordId'][number]
+    review: RouterOutputs['reviews']['getReviewsByRecordId'][number],
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const EditReviewForm = ({review}: Props) => {
+const EditReviewForm = ({review, setOpen}: Props) => {
+    const router = useRouter();
     const {mutate: editReview, isPending} = trpc.reviews.editReview.useMutation({
         onSuccess: ({message}) => {
             toast.success(message);
+            setOpen(false);
+            router.refresh();
         }
     });
     const form = useForm<z.infer<typeof editReviewSchema>>({
         resolver: zodResolver(editReviewSchema),
         defaultValues: {
             title: review.title,
-            rating: review.rating,
+            rating: review.rating.toString(),
             body: review.body,
             id: review.id
         },
     });
 
+    const {userId} = useAuth();
 
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof editReviewSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        if (!userId) return;
+
         editReview({
-            ...values
+            ...values,
+            userId,
+            rating: parseInt(values.rating)
         })
     }
 
