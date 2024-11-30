@@ -12,8 +12,8 @@ export const reviewsRouter = createTRPCRouter({
             }),
             recordId: z.number(),
             mediaType: z.string(),
-            userId:z.string(),
-            userName:z.string()
+            userId: z.string(),
+            userName: z.string()
         })
     ).mutation(async ({input}) => {
         const newReview = await prisma.review.create({
@@ -24,12 +24,12 @@ export const reviewsRouter = createTRPCRouter({
             createdReview: newReview
         }
     }),
-    getReviewsByRecordId:baseProcedure.input(
+    getReviewsByRecordId: baseProcedure.input(
         z.object({
-            mediaType:z.string(),
-            recordId:z.number()
+            mediaType: z.string(),
+            recordId: z.number()
         })
-    ).query( ( {input}) => {
+    ).query(({input}) => {
         return prisma.review.findMany({
             where: {
                 AND: {

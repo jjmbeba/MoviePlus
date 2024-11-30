@@ -27,7 +27,7 @@ const MovieStats = ({runtime, genres, voteAverage}: Props) => {
                 'border-orange-500 text-orange-500':voteAverage >= 2.5 && voteAverage < 5,
                 'border-red-500 text-red-500':voteAverage >= 0 && voteAverage < 2.5
             })}>
-                {voteAverage.toFixed(1)}
+                {voteAverage.toFixed(1)} - TMDB
             </Badge>
             <Badge variant={'outline'}>
                 {generateDurationText(hours, 'hours')} {generateDurationText(minutes, 'minutes')}

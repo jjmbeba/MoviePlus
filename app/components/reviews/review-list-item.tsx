@@ -12,6 +12,8 @@ import {
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
 import {MoreVertical} from "lucide-react";
+import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog";
+import EditReviewForm from "@/app/components/reviews/edit-review-form";
 
 type Props = {
     id: number
@@ -24,7 +26,8 @@ type Props = {
     userName: string
 }
 
-const ReviewListItem = async ({title, body, rating, userName, userId}: Props) => {
+const ReviewListItem = async (review: Props) => {
+    const {title, body, rating, userName, userId} = review;
     const {userId: currentUserId} = await auth();
     return (
         <div className={'mt-10'}>
@@ -35,23 +38,34 @@ const ReviewListItem = async ({title, body, rating, userName, userId}: Props) =>
                 <div className={'flex items-center gap-8'}>
                     <StarRating rating={rating}/>
                     {userId === currentUserId && (
-                        <DropdownMenu>
-                            <DropdownMenuTrigger>
-                                <div className={cn(buttonVariants({
-                                    variant: "ghost",
-                                    size: "icon"
-                                }))}>
-                                    <MoreVertical/>
-                                </div>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent>
-                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                <DropdownMenuSeparator/>
-                                <DropdownMenuItem>Edit review</DropdownMenuItem>
-                                <DropdownMenuItem className={'text-red-500'}>Delete review</DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-
+                        <Dialog>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <div className={cn(buttonVariants({
+                                        variant: "ghost",
+                                        size: "icon"
+                                    }))}>
+                                        <MoreVertical/>
+                                    </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent>
+                                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                                    <DropdownMenuSeparator/>
+                                    <DialogTrigger asChild>
+                                        <DropdownMenuItem>
+                                            Edit review
+                                        </DropdownMenuItem>
+                                    </DialogTrigger>
+                                    <DropdownMenuItem className={'text-red-500'}>Delete review</DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Edit Review</DialogTitle>
+                                </DialogHeader>
+                                <EditReviewForm review={review}/>
+                            </DialogContent>
+                        </Dialog>
                     )}
                 </div>
             </div>

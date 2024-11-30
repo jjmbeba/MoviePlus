@@ -10,6 +10,14 @@ export const createReviewSchema = z.object({
     mediaType: z.string(),
 });
 
+export const editReviewSchema = z.object({
+    title: z.string().min(2).max(50),
+    rating: z.string().transform((rating) => parseInt(rating)),
+    body: z.string().min(2, {
+        message: "Body must be at least 2 characters"
+    }),
+})
+
 export const createReviewSchemaWithUser = createReviewSchema.merge(
     z.object({
         userId:z.string()
