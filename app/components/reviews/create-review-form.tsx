@@ -16,6 +16,7 @@ import {createReviewSchema} from "@/trpc/schemas/reviews";
 import {trpc} from "@/trpc/client";
 import {toast} from 'sonner';
 import {Loader} from "lucide-react";
+import {useRouter} from "next/navigation";
 
 type Props = {
     recordId: number;
@@ -23,9 +24,11 @@ type Props = {
 }
 
 const CreateReviewForm = ({recordId, mediaType}: Props) => {
+    const router = useRouter();
     const {mutate: addReview, isPending} = trpc.reviews.addReview.useMutation({
-        onSuccess:({message}) => {
+        onSuccess: ({message}) => {
             toast.success(message);
+            router.refresh()
         }
     });
     const form = useForm<z.infer<typeof createReviewSchema>>({
@@ -39,7 +42,7 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
         },
     });
 
-    const {user } = useUser();
+    const {user} = useUser();
     if (!user?.id) return;
 
 
@@ -50,8 +53,8 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
         if (!user?.id || !user.fullName) return;
         addReview({
             ...values,
-            userId:user.id,
-            userName:user.fullName
+            userId: user.id,
+            userName: user.fullName
         })
     }
 

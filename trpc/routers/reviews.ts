@@ -39,25 +39,25 @@ export const reviewsRouter = createTRPCRouter({
             }
         });
     }),
-    editReview:baseProcedure.input(
+    editReview: baseProcedure.input(
         z.object({
-            id:z.number(),
+            id: z.number(),
             title: z.string().min(2).max(50),
             rating: z.number(),
             body: z.string().min(2, {
                 message: "Body must be at least 2 characters"
             }),
-            userId:z.string()
+            userId: z.string()
         })
     ).mutation(async ({input}) => {
         const {id, title, rating, body, userId} = input;
 
         const updatedReview = await prisma.review.update({
-            where:{
+            where: {
                 id,
                 userId
             },
-            data:{
+            data: {
                 title,
                 rating,
                 body
@@ -65,8 +65,25 @@ export const reviewsRouter = createTRPCRouter({
         })
 
         return {
-            message:"Review edited successfully",
+            message: "Review edited successfully",
             updatedReview
+        }
+    }),
+    deleteReview: baseProcedure.input(
+        z.object({
+            userId: z.string(),
+            reviewId: z.number()
+        })
+    ).mutation(async ({input}) => {
+        await prisma.review.delete({
+            where: {
+                id: input.reviewId,
+                userId: input.userId
+            }
+        });
+
+        return {
+            message: "Review deleted successfully"
         }
     })
 });
