@@ -20,8 +20,8 @@ type Props = {
 }
 
 const EditReviewForm = ({review}: Props) => {
-    const {mutate: addReview, isPending} = trpc.reviews.addReview.useMutation({
-        onSuccess:({message}) => {
+    const {mutate: editReview, isPending} = trpc.reviews.editReview.useMutation({
+        onSuccess: ({message}) => {
             toast.success(message);
         }
     });
@@ -31,6 +31,7 @@ const EditReviewForm = ({review}: Props) => {
             title: review.title,
             rating: review.rating,
             body: review.body,
+            id: review.id
         },
     });
 
@@ -39,7 +40,9 @@ const EditReviewForm = ({review}: Props) => {
     function onSubmit(values: z.infer<typeof editReviewSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        console.log(values)
+        editReview({
+            ...values
+        })
     }
 
     return (

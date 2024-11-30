@@ -11,6 +11,7 @@ export const createReviewSchema = z.object({
 });
 
 export const editReviewSchema = z.object({
+    id:z.number(),
     title: z.string().min(2).max(50),
     rating: z.string().transform((rating) => parseInt(rating)),
     body: z.string().min(2, {

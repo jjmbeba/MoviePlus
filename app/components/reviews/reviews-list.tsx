@@ -23,8 +23,6 @@ const ReviewsList = async ({recordId, mediaType}:Props) => {
         return reviews.some((review) => review.userId === userId);
     }
 
-    console.log(hasUserReviewed(userId!, reviews))
-
     return (
         <div className={'mt-10'}>
             <div className={'flex items-center justify-between'}>
