@@ -11,7 +11,7 @@ import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {Textarea} from "@/components/ui/textarea";
-import {useAuth} from "@clerk/nextjs";
+import {useAuth, useUser} from "@clerk/nextjs";
 import {createReviewSchema} from "@/trpc/schemas/reviews";
 import {trpc} from "@/trpc/client";
 import {toast} from 'sonner';
@@ -39,18 +39,19 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
         },
     });
 
-    const {userId} = useAuth();
-    if (!userId) return;
+    const {user } = useUser();
+    if (!user?.id) return;
 
 
     // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof createReviewSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        if (!userId) return;
+        if (!user?.id || !user.fullName) return;
         addReview({
             ...values,
-            userId
+            userId:user.id,
+            userName:user.fullName
         })
     }
 

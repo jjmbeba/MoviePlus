@@ -19,6 +19,7 @@ model Review {
   body      String
   rating    Float
   userId    String
+  userName  String
   mediaType String
   recordId  Int
 }
