@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="712000e7-e2ed-4bda-82c4-68c27ccccbc4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/prisma/migrations/20241202204142_add_title_on_bookmark_field/migration.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/bookmarks/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/bookmarks/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/bookmark-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/bookmark-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/card-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/card-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/movies/movie-list-template.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/movies/movie-list-template.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/movies/popular-movies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/movies/popular-movies.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/movies/top-rated-movies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/movies/top-rated-movies.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/navbar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/movies/[id]/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/movie/[id]/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/movies/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/movie/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/tv/[id]/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/tv/[id]/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trpc/routers/bookmarks.ts" beforeDir="false" afterPath="$PROJECT_DIR$/trpc/routers/bookmarks.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732649657086</updated>
       <workItem from="1732649658529" duration="70965000" />
-      <workItem from="1733165065339" duration="6208000" />
+      <workItem from="1733165065339" duration="6546000" />
     </task>
     <servers />
   </component>

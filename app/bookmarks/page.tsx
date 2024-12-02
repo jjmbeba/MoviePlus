@@ -3,7 +3,6 @@ import CardList from "@/app/components/card-list";
 import {Card, CardContent} from "@/components/ui/card";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
-import BookmarksFilterMenu from "@/app/components/bookmarks/bookmarks-filter-menu";
 
 const Page = () => {
     return (
