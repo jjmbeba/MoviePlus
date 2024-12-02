@@ -1,13 +1,42 @@
 import React from 'react'
-import CardList from "@/app/components/card-list";
 import {Card, CardContent} from "@/components/ui/card";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
+import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
+import {cn} from "@/lib/utils";
+import {Filter} from "lucide-react";
 
 const Page = () => {
     return (
         <div className={'mt-10'}>
-            <CardList title={'Bookmarks'} >
+            <div className={'flex items-center justify-between'}>
+                <div className={'flex items-center justify-between'}>
+                    <h2 className={'font-bold text-2xl'}>
+                        Bookmarks
+                    </h2>
+                    <Sheet>
+                        <SheetTrigger>
+                            <div className={cn(buttonVariants({
+                                variant: 'outline',
+                                size: 'icon'
+                            }))}>
+                                <Filter/>
+                            </div>
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                <SheetDescription>
+                                    This action cannot be undone. This will permanently delete your account
+                                    and remove your data from our servers.
+                                </SheetDescription>
+                            </SheetHeader>
+                        </SheetContent>
+                    </Sheet>
+
+                </div>
+            </div>
+            <div className={'mt-8'}>
                 <div className={'w-full grid grid-cols-5 gap-5'}>
                     {Array.from({length: 20}).map((_, index) => (
                         <div key={`item-${index}`}>
@@ -29,7 +58,7 @@ const Page = () => {
                         </div>
                     ))}
                 </div>
-            </CardList>
+            </div>
         </div>
     )
 }
