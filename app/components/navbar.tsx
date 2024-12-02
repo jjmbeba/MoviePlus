@@ -6,17 +6,32 @@ import NavLinks from "@/app/components/nav-links";
 import AuthSection from "@/app/components/auth-section";
 import {usePathname} from "next/navigation";
 import {EXCLUDED_NAV_ROUTES} from "@/constants";
+import {Button} from "@/components/ui/button";
+import {Bookmark} from "lucide-react";
+import {clsx} from "clsx";
+import Link from "next/link";
 
 const Navbar = () => {
     const pathname = usePathname();
 
-    if(EXCLUDED_NAV_ROUTES.includes(pathname)) return null;
+    if (EXCLUDED_NAV_ROUTES.includes(pathname)) return null;
 
     return (
-        <nav className={'sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-30 px-20 py-5 border-b border-gray-500 flex items-center justify-between'}>
+        <nav
+            className={'sticky top-0 z-10 backdrop-filter backdrop-blur-lg bg-opacity-30 px-20 py-5 border-b border-gray-500 flex items-center justify-between'}>
             <Logo/>
             <NavLinks/>
-            <AuthSection/>
+            <div className={'flex items-center gap-4'}>
+                <Button className={clsx({
+                    'text-orange-500': pathname === '/bookmarks'
+                })} variant={'link'} asChild>
+                   <Link href={'/bookmarks'}>
+                       <Bookmark/>
+                       Bookmarks
+                   </Link>
+                </Button>
+                <AuthSection/>
+            </div>
         </nav>
     )
 }

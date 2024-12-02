@@ -4,12 +4,14 @@ import {collectionsRouter} from "@/trpc/routers/collections";
 import {tvRouter} from "@/trpc/routers/tv";
 import {reviewsRouter} from "@/trpc/routers/reviews";
 import {inferRouterOutputs} from "@trpc/server";
+import {bookmarksRouter} from "@/trpc/routers/bookmarks";
 
 export const appRouter = createTRPCRouter({
   movies:moviesRouter,
   collections:collectionsRouter,
   tv:tvRouter,
-  reviews:reviewsRouter
+  reviews:reviewsRouter,
+  bookmarks:bookmarksRouter
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;

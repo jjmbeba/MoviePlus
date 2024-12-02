@@ -23,3 +23,10 @@ model Review {
   mediaType String
   recordId  Int
 }
+
+model Bookmark {
+  id        Int    @id @default(autoincrement())
+  recordId  Int
+  userId    String
+  mediaType String
+}
