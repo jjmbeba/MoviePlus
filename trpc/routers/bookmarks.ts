@@ -24,7 +24,9 @@ export const bookmarksRouter = createTRPCRouter({
     createBookmark:baseProcedure.input(
         z.object({
             recordId:z.number(),
-            mediaType:z.string()
+            mediaType:z.string(),
+            posterPath:z.string(),
+            backdropPath:z.string()
         })
     ).mutation(async ({input}) => {
         const {userId} = await auth();

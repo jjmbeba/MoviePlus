@@ -7,10 +7,7 @@ import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import BookmarksFilterMenu from "@/app/components/bookmarks/bookmarks-filter-menu";
 
-const Page = async () => {
-    const bookmarks = await trpc.bookmarks.getUserBookmarks();
-    console.log(bookmarks)
-
+const Page = () => {
     return (
         <div className={'mt-10'}>
             <CardList title={'Bookmarks'} customHeaderElement={<BookmarksFilterMenu/>}>
