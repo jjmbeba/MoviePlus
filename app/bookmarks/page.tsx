@@ -1,7 +1,6 @@
 import React from 'react'
 import CardList from "@/app/components/card-list";
 import {Card, CardContent} from "@/components/ui/card";
-import BookmarkButton from "@/app/components/bookmark-button";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import BookmarksFilterMenu from "@/app/components/bookmarks/bookmarks-filter-menu";
@@ -9,7 +8,7 @@ import BookmarksFilterMenu from "@/app/components/bookmarks/bookmarks-filter-men
 const Page = () => {
     return (
         <div className={'mt-10'}>
-            <CardList title={'Bookmarks'} customHeaderElement={<BookmarksFilterMenu/>}>
+            <CardList title={'Bookmarks'} >
                 <div className={'w-full grid grid-cols-5 gap-5'}>
                     {Array.from({length: 20}).map((_, index) => (
                         <div key={`item-${index}`}>
@@ -18,7 +17,7 @@ const Page = () => {
                                     <CardContent className="flex aspect-square items-center justify-center p-6">
                                         <span className="text-3xl font-semibold">1</span>
                                     </CardContent>
-                                    <BookmarkButton className={'absolute top-1 right-2'}/>
+                                    {/*<BookmarkButton  className={'absolute top-1 right-2'}/>*/}
                                 </Card>
                             </div>
                             <Link href={`/`} className={`${buttonVariants({
