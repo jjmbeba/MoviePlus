@@ -26,7 +26,8 @@ export const bookmarksRouter = createTRPCRouter({
             recordId:z.number(),
             mediaType:z.string(),
             posterPath:z.string(),
-            backdropPath:z.string()
+            backdropPath:z.string(),
+            title:z.string()
         })
     ).mutation(async ({input}) => {
         const {userId} = await auth();

@@ -11,7 +11,7 @@ import {Toaster} from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
     title: "MoviePlus",
-    description: "Home of great movie reviews",
+    description: "Home of great movies reviews",
 };
 
 const doto = Doto({subsets: ['latin']});

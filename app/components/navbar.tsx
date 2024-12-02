@@ -10,9 +10,11 @@ import {Button} from "@/components/ui/button";
 import {Bookmark} from "lucide-react";
 import {clsx} from "clsx";
 import Link from "next/link";
+import {useAuth} from "@clerk/nextjs";
 
 const Navbar = () => {
     const pathname = usePathname();
+    const {userId} = useAuth();
 
     if (EXCLUDED_NAV_ROUTES.includes(pathname)) return null;
 
@@ -22,14 +24,14 @@ const Navbar = () => {
             <Logo/>
             <NavLinks/>
             <div className={'flex items-center gap-4'}>
-                <Button className={clsx({
+                {userId && <Button className={clsx({
                     'text-orange-500': pathname === '/bookmarks'
                 })} variant={'link'} asChild>
-                   <Link href={'/bookmarks'}>
-                       <Bookmark/>
-                       Bookmarks
-                   </Link>
-                </Button>
+                    <Link href={'/bookmarks'}>
+                        <Bookmark/>
+                        Bookmarks
+                    </Link>
+                </Button>}
                 <AuthSection/>
             </div>
         </nav>

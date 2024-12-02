@@ -7,7 +7,7 @@ import {movieListSchema} from "@/trpc/schemas/movies";
 
 type Props = {
     title: string;
-    mediaType: 'movies' | 'tv';
+    mediaType: 'movie' | 'tv';
     movieData: z.infer<typeof movieListSchema.shape.results>
 }
 

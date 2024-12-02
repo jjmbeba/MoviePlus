@@ -1,5 +1,4 @@
 import React from 'react'
-import {trpc} from "@/trpc/server";
 import CardList from "@/app/components/card-list";
 import {Card, CardContent} from "@/components/ui/card";
 import BookmarkButton from "@/app/components/bookmark-button";

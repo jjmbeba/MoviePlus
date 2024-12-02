@@ -20,6 +20,8 @@ const Page = async ({params}: Props) => {
     //Create a fallback page
     if (!movie) return;
 
+    const {title, overview, runtime, genres, vote_average, id, belongs_to_collection, backdrop_path, poster_path} = movie;
+
     return (
         <div className={'mt-10'}>
             <BackButton/>
@@ -32,23 +34,23 @@ const Page = async ({params}: Props) => {
                 <div>
                     <div className={'flex items-center justify-between'}>
                         <h1 className={'text-2xl'}>
-                            {movie.title}
+                            {title}
                         </h1>
-                        <BookmarkButton/>
+                        <BookmarkButton title={title} mediaType={'movie'} recordId={id} backdropPath={backdrop_path} posterPath={poster_path} />
                     </div>
-                    <MovieStats runtime={movie.runtime} genres={movie.genres} voteAverage={movie.vote_average} />
+                    <MovieStats runtime={runtime} genres={genres} voteAverage={vote_average} />
                     <p className={'max-w-lg mt-5'}>
-                        {movie.overview}
+                        {overview}
                     </p>
                 </div>
             </div>
-            <ReviewsList recordId={movie.id} mediaType={'movie'} />
-            {movie.belongs_to_collection &&
+            <ReviewsList recordId={id} mediaType={'movie'} />
+            {belongs_to_collection &&
                 (<Collections
-                    name={movie.belongs_to_collection.name}
-                    collectionId={movie.belongs_to_collection.id}
+                    name={belongs_to_collection.name}
+                    collectionId={belongs_to_collection.id}
                 />)}
-            <Recommendations mediaType={'movie'} recordId={movie.id}/>
+            <Recommendations mediaType={'movie'} recordId={id}/>
         </div>
     )
 }

@@ -16,6 +16,10 @@ const Page = async ({params}: Props) => {
         id: parseInt((await params).id)
     });
 
+    if(!series) return;
+
+    const {name, overview, id, vote_average, number_of_seasons, number_of_episodes, genres, poster_path, backdrop_path} = series;
+
     return (
         <div className={'mt-10'}>
             <BackButton/>
@@ -28,18 +32,18 @@ const Page = async ({params}: Props) => {
                 <div>
                     <div className={'flex items-center justify-between'}>
                         <h1 className={'text-2xl'}>
-                            {series.name}
+                            {name}
                         </h1>
-                        <BookmarkButton/>
+                        <BookmarkButton title={name} mediaType={'tv'} recordId={id} posterPath={poster_path} backdropPath={backdrop_path} />
                     </div>
-                    <SeriesStats voteAverage={series.vote_average} numberOfSeasons={series.number_of_seasons} numberOfEpisodes={series.number_of_episodes} genres={series.genres} />
+                    <SeriesStats voteAverage={vote_average} numberOfSeasons={number_of_seasons} numberOfEpisodes={number_of_episodes} genres={genres} />
                     <p className={'max-w-lg mt-5'}>
-                        {series.overview}
+                        {overview}
                     </p>
                 </div>
             </div>
-            <ReviewsList recordId={series.id} mediaType={'tv'} />
-            <Recommendations mediaType={'tv'} recordId={series.id}/>
+            <ReviewsList recordId={id} mediaType={'tv'} />
+            <Recommendations mediaType={'tv'} recordId={id}/>
         </div>
     )
 }

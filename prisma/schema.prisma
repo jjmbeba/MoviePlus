@@ -31,4 +31,5 @@ model Bookmark {
   mediaType    String
   posterPath   String
   backdropPath String
+  title        String
 }

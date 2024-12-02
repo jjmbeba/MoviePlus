@@ -4,7 +4,7 @@ export const NAVLINKS = [
         text: "Home"
     },
     {
-        route: "/movies",
+        route: "/movie",
         text: "Movies"
     }, {
         route: "/tv",

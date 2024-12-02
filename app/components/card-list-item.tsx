@@ -17,7 +17,7 @@ type Props = {
 }
 
 
-const CardListItem = ({title, id, mediaType = 'movies'}:Props) => {
+const CardListItem = ({title, id, mediaType = 'movie'}:Props) => {
     return (
         <CarouselItem className="md:basis-1/2 lg:basis-1/5">
             <div className="p-1">
