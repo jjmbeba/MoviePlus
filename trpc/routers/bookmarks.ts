@@ -34,8 +34,8 @@ export const bookmarksRouter = createTRPCRouter({
 
         if (!userId) {
             throw new TRPCError({
-                message: "User not authenticated",
-                code: "FORBIDDEN"
+                message: "Login to continue",
+                code: "FORBIDDEN",
             })
         }
 

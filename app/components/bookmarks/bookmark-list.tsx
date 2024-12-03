@@ -20,7 +20,7 @@ const BookmarkList = ({bookmarks}: Props) => {
                 <div className={'mt-16 pb-16 flex items-center justify-center gap-5'}>
                     <Ghost className={'w-16 h-16'}/>
                     <p>
-                        Unfortunately, there are no bookmarks for this category.
+                        Unfortunately, you have no bookmarks for this category.
                     </p>
                 </div>
             )}

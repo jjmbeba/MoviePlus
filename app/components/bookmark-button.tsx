@@ -32,6 +32,9 @@ const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPat
             toast.success(message);
             router.refresh();
             setIsBookmarked((prev) => !prev);
+        },
+        onError:({message}) => {
+            toast.error(message);
         }
     });
 
