@@ -25,7 +25,7 @@ const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPat
         recordId
     });
 
-    const [isBookmarked, setIsBookmarked] = useState(data ?? false);
+    const [isBookmarked, setIsBookmarked] = useState(data);
 
     const {mutate: createBookmark, isPending} = trpc.bookmarks.createBookmark.useMutation({
         onSuccess: ({message}) => {
@@ -34,6 +34,8 @@ const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPat
             setIsBookmarked((prev) => !prev);
         }
     });
+
+    console.log(data)
 
     return (
         <Button onClick={() => createBookmark(

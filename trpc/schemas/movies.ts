@@ -4,7 +4,7 @@ export const movieListSchema = z.object({
     page: z.number(),
     results: z.object({
         adult: z.boolean(),
-        backdrop_path: z.string(),
+        backdrop_path: z.string().nullable(),
         genre_ids: z.number().array(),
         id: z.number(),
         original_title: z.string(),

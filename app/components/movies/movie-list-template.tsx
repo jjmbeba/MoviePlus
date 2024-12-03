@@ -26,7 +26,7 @@ const MovieListTemplate = ({title, mediaType, movieData}: Props) => {
                             mediaType={mediaType}
                             title={title}
                             id={id}
-                            backdropPath={backdrop_path}
+                            backdropPath={backdrop_path ?? ''}
                             posterPath={poster_path}
                             key={id}/>
                     ))}
