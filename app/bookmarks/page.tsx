@@ -23,13 +23,13 @@ const Page = async () => {
                         <TabsTrigger value="tv">Tv Series</TabsTrigger>
                     </TabsList>
                     <TabsContent value="all" className={'w-full'}>
-                        <BookmarkList bookmarks={bookmarks}/>
+                        <BookmarkList bookmarks={[...bookmarks]}/>
                     </TabsContent>
                     <TabsContent value="movies" className={'w-full'}>
-                        <BookmarkList bookmarks={bookmarks.filter((bookmark) => bookmark.mediaType === 'movie')}/>
+                        <BookmarkList bookmarks={[...bookmarks.filter((bookmark) => bookmark.mediaType === 'movie')]}/>
                     </TabsContent>
                     <TabsContent value="tv" className={'w-full'}>
-                        <BookmarkList bookmarks={bookmarks.filter((bookmark) => bookmark.mediaType === 'tv')}/>
+                        <BookmarkList bookmarks={[...bookmarks.filter((bookmark) => bookmark.mediaType === 'tv')]}/>
                     </TabsContent>
                 </Tabs>
             </div>
