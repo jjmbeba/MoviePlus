@@ -44,11 +44,12 @@ const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPat
             toast.success(message);
             setIsBookmarked((prev) => !prev);
             trpcContext.bookmarks.isBookmarked.invalidate();
+            trpcContext.bookmarks.getUserBookmarks.invalidate();
             router.refresh();
         },
         onError: ({message}) => {
             toast.error(message);
-        }
+        },
     });
 
     return (
