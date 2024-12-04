@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="712000e7-e2ed-4bda-82c4-68c27ccccbc4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/trpc/routers/search.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/trpc/schemas/search.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/movies/movie-list-template.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/movies/movie-list-template.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/tv/tv-list-template.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/tv/tv-list-template.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/search/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/search/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trpc/routers/_app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/trpc/routers/_app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trpc/schemas/movies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/trpc/schemas/movies.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trpc/schemas/tv.ts" beforeDir="false" afterPath="$PROJECT_DIR$/trpc/schemas/tv.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/card-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/card-list-item.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1732649657086</updated>
       <workItem from="1732649658529" duration="70965000" />
-      <workItem from="1733165065339" duration="26360000" />
+      <workItem from="1733165065339" duration="27905000" />
     </task>
     <servers />
   </component>

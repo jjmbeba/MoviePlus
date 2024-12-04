@@ -6,6 +6,8 @@ import {buttonVariants} from "@/components/ui/button";
 import slug from "slug";
 import BookmarkButton from "@/app/components/bookmark-button";
 import {auth} from "@clerk/nextjs/server";
+import Image from "next/image";
+import {generateImageUrl} from "@/lib/utils";
 
 //gets title, image_url, id,
 //generate url using id and slug
@@ -18,20 +20,19 @@ type Props = {
 }
 
 
-const CardListItem = async ({title, id, mediaType = 'movie', posterPath, backdropPath}: Props) => {
-    const {userId} = await auth()
+const CardListItem = async ({title, id, mediaType, posterPath, backdropPath}: Props) => {
+    const {userId} = await auth();
+    const imageUrl = posterPath === '' ? 'https://placehold.co/228x341.jpg' : generateImageUrl(posterPath);
+    console.log(imageUrl, title, mediaType)
 
     return (
         <CarouselItem className="md:basis-1/2 lg:basis-1/5">
-            <div className="p-1">
-                <Card className={'relative'}>
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-3xl font-semibold">1</span>
-                    </CardContent>
-                    {userId && <BookmarkButton title={title} mediaType={mediaType} recordId={id} backdropPath={backdropPath ?? ''}
-                                     posterPath={posterPath ?? ''} className={'absolute top-1 right-2'}/>}
-                </Card>
-            </div>
+            <Card className={'relative'}>
+                <Image className={'rounded-xl'} width={227} height={312} src={imageUrl} alt={title}/>
+                {userId && <BookmarkButton title={title} mediaType={mediaType} recordId={id}
+                                           backdropPath={backdropPath ?? ''}
+                                           posterPath={posterPath ?? ''} className={'absolute top-1 right-2'}/>}
+            </Card>
             <Link href={`/${mediaType}/${id}/${slug(title)}`} className={`${buttonVariants({
                 variant: 'link'
             })}`}>
