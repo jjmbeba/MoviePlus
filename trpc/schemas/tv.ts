@@ -112,7 +112,7 @@ export const tvListResult = z.object({
     original_name: z.string(),
     overview: z.string(),
     popularity: z.number(),
-    poster_path: z.string(),
+    poster_path: z.string().nullable(),
     first_air_date: z.string(), // Date object
     name: z.string(),
     vote_average: z.number(),
