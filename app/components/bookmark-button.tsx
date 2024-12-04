@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Button} from "@/components/ui/button";
 import {Bookmark, Loader} from "lucide-react";
 import {cn} from "@/lib/utils";
@@ -20,25 +20,36 @@ type Props = {
 
 const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPath, title}: Props) => {
     const router = useRouter();
-    const {data} = trpc.bookmarks.isBookmarked.useQuery({
+    const {data, error, isError, isLoading} = trpc.bookmarks.isBookmarked.useQuery({
         mediaType,
         recordId
     });
+    const trpcContext = trpc.useUtils();
+
+    useEffect(() => {
+        if (isError && error) {
+            toast.error(error.message);
+        }
+    }, [error, isError]);
+
+    useEffect(() => {
+        setIsBookmarked(data);
+    }, [data])
 
     const [isBookmarked, setIsBookmarked] = useState(data);
+
 
     const {mutate: createBookmark, isPending} = trpc.bookmarks.createBookmark.useMutation({
         onSuccess: ({message}) => {
             toast.success(message);
-            router.refresh();
             setIsBookmarked((prev) => !prev);
+            trpcContext.bookmarks.isBookmarked.invalidate();
+            router.refresh();
         },
-        onError:({message}) => {
+        onError: ({message}) => {
             toast.error(message);
         }
     });
-
-    console.log(data)
 
     return (
         <Button onClick={() => createBookmark(
@@ -50,7 +61,7 @@ const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPat
                 title
             }
         )} disabled={isPending} className={cn(className)} variant={'ghost'} size={'icon'}>
-            {isPending ? <Loader className={'animate-spin'}/> : <Bookmark className={cn(clsx({
+            {isPending || isLoading ? <Loader className={'animate-spin'}/> : <Bookmark className={cn(clsx({
                 'fill-yellow-500  text-yellow-500': isBookmarked
             }))}/>}
         </Button>

@@ -78,7 +78,12 @@ export const bookmarksRouter = createTRPCRouter({
     ).query(async ({input}) => {
         const {userId} = await auth();
 
-        if (!userId) return;
+        if (!userId) {
+            throw new TRPCError({
+                message:"User is not authenticated",
+                code:"FORBIDDEN"
+            });
+        }
 
         const bookmarks = await prisma.bookmark.findMany({
             where: {

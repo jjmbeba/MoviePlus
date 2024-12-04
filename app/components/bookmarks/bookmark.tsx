@@ -4,13 +4,14 @@ import Link from "next/link";
 import slug from "slug";
 import {buttonVariants} from "@/components/ui/button";
 import {RouterOutputs} from "@/trpc/routers/_app";
+import BookmarkButton from "@/app/components/bookmark-button";
 
 type Props = {
     bookmark:RouterOutputs['bookmarks']['getUserBookmarks'][number]
 }
 
 const Bookmark = ({bookmark}:Props) => {
-    const { mediaType, title, recordId} = bookmark;
+    const { mediaType, title, recordId, posterPath, backdropPath} = bookmark;
 
     return (
         <div>
@@ -19,7 +20,7 @@ const Bookmark = ({bookmark}:Props) => {
                     <CardContent className="flex aspect-square items-center justify-center p-6">
                         <span className="text-3xl font-semibold">1</span>
                     </CardContent>
-                    {/*<BookmarkButton  className={'absolute top-1 right-2'}/>*/}
+                    <BookmarkButton mediaType={mediaType} recordId={recordId} title={title} posterPath={posterPath ?? ''} backdropPath={backdropPath ?? ''}   className={'absolute top-1 right-2'}/>
                 </Card>
             </div>
             <Link href={`/${mediaType}/${recordId}/${slug(title)}`} className={`${buttonVariants({

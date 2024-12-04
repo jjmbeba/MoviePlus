@@ -5,14 +5,23 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import BookmarkList from "@/app/components/bookmarks/bookmark-list";
 import BookmarksSearch from "@/app/components/bookmarks/bookmarks-search";
 import {trpc} from "@/trpc/client";
+import {TAB_OPTIONS} from "@/constants";
+import {Loader} from "lucide-react";
 
 const BookmarkTabs = () => {
-    const {data: bookmarks} = trpc.bookmarks.getUserBookmarks.useQuery();
-    const [search, setSearch] = useState('venom');
+    const {data: bookmarks, isLoading} = trpc.bookmarks.getUserBookmarks.useQuery();
+    const [search, setSearch] = useState('');
+    const [activeTab, setActiveTab] = useState('all');
 
     const filteredBookmarks = useMemo(() => {
-        return bookmarks?.filter((bookmark) => bookmark.title.toLowerCase().includes(search.toLowerCase()))
-    }, [search, bookmarks]);
+        return bookmarks?.filter((bookmark) => {
+            if (activeTab === 'all') {
+                return bookmark.title.toLowerCase().includes(search.toLowerCase())
+            }
+
+            return bookmark.mediaType === activeTab && bookmark.title.toLowerCase().includes(search.toLowerCase())
+        })
+    }, [search, bookmarks, activeTab]);
 
     return (
         <div>
@@ -23,24 +32,28 @@ const BookmarkTabs = () => {
                 <BookmarksSearch setSearch={setSearch}/>
             </div>
             <div className={'mt-8 w-full'}>
-                <Tabs defaultValue="all" className={'w-full'}>
-                    <TabsList>
-                        <TabsTrigger value="all">All</TabsTrigger>
-                        <TabsTrigger value="movies">Movies</TabsTrigger>
-                        <TabsTrigger value="tv">Tv Series</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="all" className={'w-full'}>
-                        <BookmarkList bookmarks={filteredBookmarks ?? []}/>
-                    </TabsContent>
-                    <TabsContent value="movies" className={'w-full'}>
-                        <BookmarkList
-                            bookmarks={filteredBookmarks?.filter((bookmark) => bookmark.mediaType === 'movie') ?? []}/>
-                    </TabsContent>
-                    <TabsContent value="tv" className={'w-full'}>
-                        <BookmarkList
-                            bookmarks={filteredBookmarks?.filter((bookmark) => bookmark.mediaType === 'tv') ?? []}/>
-                    </TabsContent>
-                </Tabs>
+                {isLoading ? (
+                    <div className={'mt-16 h-[50vh] flex items-center justify-center gap-5'}>
+                        <Loader className={'w-8 h-8 animate-spin'}/>
+                        <p>
+                            Hang on. Loading your bookmarks ;)
+                        </p>
+                    </div>
+                ) : (
+                    <Tabs value={activeTab} className={'w-full'}>
+                        <TabsList>
+                            {TAB_OPTIONS.map(({value, text}) => (
+                                <TabsTrigger key={value} onClick={() => setActiveTab(value)}
+                                             value={value}>{text}</TabsTrigger>
+                            ))}
+                        </TabsList>
+                        {TAB_OPTIONS.map(({value}) => (
+                            <TabsContent key={value} value={value} className={'w-full'}>
+                                <BookmarkList bookmarks={filteredBookmarks ?? []}/>
+                            </TabsContent>
+                        ))}
+                    </Tabs>
+                )}
             </div>
         </div>
     )

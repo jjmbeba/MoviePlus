@@ -6,12 +6,15 @@ import {trpc} from "@/trpc/server";
 import Recommendations from "@/app/components/recommendations";
 import ReviewsList from "@/app/components/reviews/reviews-list";
 import SeriesStats from "@/app/components/tv/series-stats";
+import {auth} from "@clerk/nextjs/server";
 
 type Props = {
     params: Promise<{ slug: string; id: string; }>
 }
 
 const Page = async ({params}: Props) => {
+    const {userId} = await auth()
+
     const series = await trpc.tv.getTvSeriesById({
         id: parseInt((await params).id)
     });
@@ -34,7 +37,8 @@ const Page = async ({params}: Props) => {
                         <h1 className={'text-2xl'}>
                             {name}
                         </h1>
-                        <BookmarkButton title={name} mediaType={'tv'} recordId={id} posterPath={poster_path} backdropPath={backdrop_path} />
+                        {userId && <BookmarkButton title={name} mediaType={'tv'} recordId={id} posterPath={poster_path}
+                                         backdropPath={backdrop_path}/>}
                     </div>
                     <SeriesStats voteAverage={vote_average} numberOfSeasons={number_of_seasons} numberOfEpisodes={number_of_episodes} genres={genres} />
                     <p className={'max-w-lg mt-5'}>

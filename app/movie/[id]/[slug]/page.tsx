@@ -7,12 +7,15 @@ import MovieStats from "@/app/components/movies/movie-stats";
 import Collections from "@/app/components/collections";
 import Recommendations from "@/app/components/recommendations";
 import ReviewsList from "@/app/components/reviews/reviews-list";
+import {auth} from "@clerk/nextjs/server";
 
 type Props = {
     params: Promise<{ slug: string; id: string; }>
 }
 
 const Page = async ({params}: Props) => {
+    const {userId} = await auth()
+
     const movie = await trpc.movies.getMovieById({
         id: parseInt((await params).id)
     });
@@ -20,7 +23,17 @@ const Page = async ({params}: Props) => {
     //Create a fallback page
     if (!movie) return;
 
-    const {title, overview, runtime, genres, vote_average, id, belongs_to_collection, backdrop_path, poster_path} = movie;
+    const {
+        title,
+        overview,
+        runtime,
+        genres,
+        vote_average,
+        id,
+        belongs_to_collection,
+        backdrop_path,
+        poster_path
+    } = movie;
 
     return (
         <div className={'mt-10'}>
@@ -36,15 +49,16 @@ const Page = async ({params}: Props) => {
                         <h1 className={'text-2xl'}>
                             {title}
                         </h1>
-                        <BookmarkButton title={title} mediaType={'movie'} recordId={id} backdropPath={backdrop_path} posterPath={poster_path} />
+                        {userId && <BookmarkButton title={title} mediaType={'movie'} recordId={id} backdropPath={backdrop_path}
+                                         posterPath={poster_path}/>}
                     </div>
-                    <MovieStats runtime={runtime} genres={genres} voteAverage={vote_average} />
+                    <MovieStats runtime={runtime} genres={genres} voteAverage={vote_average}/>
                     <p className={'max-w-lg mt-5'}>
                         {overview}
                     </p>
                 </div>
             </div>
-            <ReviewsList recordId={id} mediaType={'movie'} />
+            <ReviewsList recordId={id} mediaType={'movie'}/>
             {belongs_to_collection &&
                 (<Collections
                     name={belongs_to_collection.name}

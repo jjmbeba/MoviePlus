@@ -4,19 +4,23 @@ import {Card, CardContent} from "@/components/ui/card";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import slug from "slug";
+import BookmarkButton from "@/app/components/bookmark-button";
+import {auth} from "@clerk/nextjs/server";
 
 //gets title, image_url, id,
 //generate url using id and slug
 type Props = {
-    title:string;
-    posterPath:string;
-    backdropPath:string;
-    id:number;
-    mediaType:string
+    title: string;
+    posterPath: string;
+    backdropPath: string;
+    id: number;
+    mediaType: string
 }
 
 
-const CardListItem = ({title, id, mediaType = 'movie'}:Props) => {
+const CardListItem = async ({title, id, mediaType = 'movie', posterPath, backdropPath}: Props) => {
+    const {userId} = await auth()
+
     return (
         <CarouselItem className="md:basis-1/2 lg:basis-1/5">
             <div className="p-1">
@@ -24,7 +28,8 @@ const CardListItem = ({title, id, mediaType = 'movie'}:Props) => {
                     <CardContent className="flex aspect-square items-center justify-center p-6">
                         <span className="text-3xl font-semibold">1</span>
                     </CardContent>
-                    {/*<BookmarkButton className={'absolute top-1 right-2'}/>*/}
+                    {userId && <BookmarkButton title={title} mediaType={mediaType} recordId={id} backdropPath={backdropPath ?? ''}
+                                     posterPath={posterPath ?? ''} className={'absolute top-1 right-2'}/>}
                 </Card>
             </div>
             <Link href={`/${mediaType}/${id}/${slug(title)}`} className={`${buttonVariants({

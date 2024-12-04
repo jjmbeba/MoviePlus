@@ -1,7 +1,7 @@
 import React from 'react'
 import BookmarkTabs from "@/app/components/bookmarks/bookmark-tabs";
 
-const Page = async () => {
+const Page = () => {
     return (
         <div className={'mt-10'}>
             <BookmarkTabs/>
