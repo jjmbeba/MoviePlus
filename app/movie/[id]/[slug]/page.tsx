@@ -1,6 +1,5 @@
 import React from 'react'
 import BackButton from "@/app/components/back-button";
-import {Card, CardContent} from "@/components/ui/card";
 import BookmarkButton from "@/app/components/bookmark-button";
 import {trpc} from "@/trpc/server";
 import MovieStats from "@/app/components/movies/movie-stats";
