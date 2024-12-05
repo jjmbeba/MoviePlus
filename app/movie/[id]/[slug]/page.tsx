@@ -8,6 +8,8 @@ import Collections from "@/app/components/collections";
 import Recommendations from "@/app/components/recommendations";
 import ReviewsList from "@/app/components/reviews/reviews-list";
 import {auth} from "@clerk/nextjs/server";
+import Image from "next/image";
+import {generateImageUrl} from "@/lib/utils";
 
 type Props = {
     params: Promise<{ slug: string; id: string; }>
@@ -35,22 +37,21 @@ const Page = async ({params}: Props) => {
         poster_path
     } = movie;
 
+    const imageUrl = poster_path === '' ? 'https://placehold.co/400' : generateImageUrl(poster_path);
+
     return (
         <div className={'mt-10'}>
             <BackButton/>
-            <div className={'flex items-start gap-16 mt-8'}>
-                <Card className={'relative w-1/2 h-[60vh] flex items-center justify-center'}>
-                    <CardContent className="flex aspect-square items-center justify-center w-1/3">
-                        Image
-                    </CardContent>
-                </Card>
+            <div className={'flex items-start justify-center gap-28 mt-8'}>
+                <Image className={'rounded-xl'} width={327} height={412} src={imageUrl} alt={title}/>
                 <div>
                     <div className={'flex items-center justify-between'}>
                         <h1 className={'text-2xl'}>
                             {title}
                         </h1>
-                        {userId && <BookmarkButton title={title} mediaType={'movie'} recordId={id} backdropPath={backdrop_path}
-                                         posterPath={poster_path}/>}
+                        {userId &&
+                            <BookmarkButton title={title} mediaType={'movie'} recordId={id} backdropPath={backdrop_path}
+                                            posterPath={poster_path}/>}
                     </div>
                     <MovieStats runtime={runtime} genres={genres} voteAverage={vote_average}/>
                     <p className={'max-w-lg mt-5'}>

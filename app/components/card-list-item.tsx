@@ -1,6 +1,6 @@
 import React from 'react'
 import {CarouselItem} from "@/components/ui/carousel";
-import {Card, CardContent} from "@/components/ui/card";
+import {Card} from "@/components/ui/card";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
 import slug from "slug";
