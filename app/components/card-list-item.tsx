@@ -1,16 +1,14 @@
 import React from 'react'
-import {CarouselItem} from "@/components/ui/carousel";
-import {Card} from "@/components/ui/card";
+import { CarouselItem } from "@/components/ui/carousel";
+import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import slug from "slug";
 import BookmarkButton from "@/app/components/bookmark-button";
-import {auth} from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
-import {generateImageUrl} from "@/lib/utils";
+import { generateImageUrl } from "@/lib/utils";
 
-//gets title, image_url, id,
-//generate url using id and slug
 type Props = {
     title: string;
     posterPath: string;
@@ -19,28 +17,46 @@ type Props = {
     mediaType: string
 }
 
-
-const CardListItem = async ({title, id, mediaType, posterPath, backdropPath}: Props) => {
-    const {userId} = await auth();
+const CardListItem = async ({ title, id, mediaType, posterPath, backdropPath }: Props) => {
+    const { userId } = await auth();
     const imageUrl = posterPath === '' ? 'https://placehold.co/228x341.jpg' : generateImageUrl(posterPath);
-    console.log(imageUrl, title, mediaType)
 
     return (
-        <CarouselItem className="md:basis-1/2 lg:basis-1/5">
-            <Card className={'relative'}>
-                <Image className={'rounded-xl'} width={227} height={312} src={imageUrl} alt={title}/>
-                {userId && <BookmarkButton title={title} mediaType={mediaType} recordId={id}
-                                           backdropPath={backdropPath ?? ''}
-                                           posterPath={posterPath ?? ''} className={'absolute top-1 right-2'}/>}
+        <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
+            <Card className="relative w-full">
+                <div className="aspect-[2/3] relative">
+                    <Image
+                        className="rounded-xl object-cover"
+                        src={imageUrl}
+                        alt={title}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                    />
+                    {userId && (
+                        <BookmarkButton
+                            title={title}
+                            mediaType={mediaType}
+                            recordId={id}
+                            backdropPath={backdropPath ?? ''}
+                            posterPath={posterPath ?? ''}
+                            className="absolute top-2 right-2"
+                        />
+                    )}
+                </div>
             </Card>
-            <Link href={`/${mediaType}/${id}/${slug(title)}`} className={`${buttonVariants({
-                variant: 'link'
-            })}`}>
-                <h2 className={'w-[200px] overflow-hidden text-ellipsis whitespace-nowrap'}>
+            <Link
+                href={`/${mediaType}/${id}/${slug(title)}`}
+                className={`${buttonVariants({
+                    variant: 'link'
+                })} w-full justify-start px-0 mt-2`}
+            >
+                <h2 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm sm:text-base">
                     {title}
                 </h2>
             </Link>
         </CarouselItem>
     )
 }
+
 export default CardListItem
+
