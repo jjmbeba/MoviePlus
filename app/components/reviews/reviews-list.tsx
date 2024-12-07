@@ -6,7 +6,7 @@ import {RouterOutputs} from "@/trpc/routers/_app";
 import {auth} from "@clerk/nextjs/server";
 import Link from "next/link";
 import {buttonVariants} from "@/components/ui/button";
-import {Ghost} from "lucide-react";
+import { Ghost } from 'lucide-react';
 
 type Props = {
     recordId: number;
@@ -25,27 +25,28 @@ const ReviewsList = async ({recordId, mediaType}: Props) => {
     }
 
     return (
-        <div className={'mt-10'}>
-            <div className={'flex items-center justify-between'}>
-                <h2 className={'font-bold text-2xl'}>
+        <div className={'mt-8 sm:mt-10'}>
+            <div className={'flex flex-col sm:flex-row sm:items-center sm:justify-between'}>
+                <h2 className={'font-bold text-xl sm:text-2xl mb-4 sm:mb-0'}>
                     Reviews
                 </h2>
                 {userId ? !hasUserReviewed(userId, reviews) && (
-                    <CreateReviewForm recordId={recordId} mediaType={mediaType}/>) : (
+                    <CreateReviewForm recordId={recordId} mediaType={mediaType}/>
+                ) : (
                     <Link className={buttonVariants({
-                        variant: 'link'
+                        variant: 'link',
+                        className: 'text-sm sm:text-base'
                     })} href={'/login'}>
                         Sign in to add review
                     </Link>
                 )}
-
             </div>
             {reviews.length > 0 ? reviews.map((review) => (
                 <ReviewListItem key={review.id} {...review} />
             )) : (
-                <div className={'mt-16 pb-16 flex items-center justify-center gap-5'}>
-                    <Ghost className={'w-16 h-16'}/>
-                    <p>
+                <div className={'mt-12 sm:mt-16 pb-12 sm:pb-16 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 text-center sm:text-left'}>
+                    <Ghost className={'w-12 h-12 sm:w-16 sm:h-16'}/>
+                    <p className="text-sm sm:text-base">
                         Unfortunately, there are no reviews for this record.
                     </p>
                 </div>
@@ -54,3 +55,4 @@ const ReviewsList = async ({recordId, mediaType}: Props) => {
     )
 }
 export default ReviewsList
+

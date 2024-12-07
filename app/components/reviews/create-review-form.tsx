@@ -15,7 +15,7 @@ import {useUser} from "@clerk/nextjs";
 import {createReviewSchema} from "@/trpc/schemas/reviews";
 import {trpc} from "@/trpc/client";
 import {toast} from 'sonner';
-import {Loader} from "lucide-react";
+import { Loader } from 'lucide-react';
 import {useRouter} from "next/navigation";
 
 type Props = {
@@ -45,11 +45,7 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
     const {user} = useUser();
     if (!user?.id) return;
 
-
-    // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof createReviewSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         if (!user?.id || !user.fullName) return;
         addReview({
             ...values,
@@ -63,19 +59,19 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
             <DialogTrigger>
                 <AddReviewButton/>
             </DialogTrigger>
-            <DialogContent className={'max-w-xl'}>
+            <DialogContent className={'max-w-[90vw] sm:max-w-xl'}>
                 <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="text-lg sm:text-xl mb-4">
                         Create new review
                     </DialogTitle>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                            <div className={'flex items-center *:w-1/2 gap-4'}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
+                            <div className={'flex flex-col sm:flex-row sm:items-center sm:gap-4'}>
                                 <FormField
                                     control={form.control}
                                     name="title"
                                     render={({field}) => (
-                                        <FormItem>
+                                        <FormItem className="w-full sm:w-1/2">
                                             <FormLabel>Title</FormLabel>
                                             <FormControl>
                                                 <Input placeholder="Review Title goes here..." {...field} />
@@ -88,7 +84,7 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
                                     control={form.control}
                                     name="rating"
                                     render={({field}) => (
-                                        <FormItem>
+                                        <FormItem className="w-full sm:w-1/2 mt-4 sm:mt-0">
                                             <FormLabel>Rating</FormLabel>
                                             <Select onValueChange={field.onChange}
                                                     defaultValue={field.value.toString()}>
@@ -120,7 +116,7 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
                                         <FormControl>
                                             <Textarea
                                                 placeholder="Tell us a little bit about yourself"
-                                                className="resize-none"
+                                                className="resize-none h-32 sm:h-40"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -128,8 +124,8 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
                                     </FormItem>
                                 )}
                             />
-                            <Button disabled={isPending} type="submit">
-                                {isPending && <Loader className={'animate-spin'}/>}
+                            <Button disabled={isPending} type="submit" className="w-full sm:w-auto">
+                                {isPending && <Loader className={'animate-spin mr-2'}/>}
                                 Create
                             </Button>
                         </form>
@@ -137,7 +133,7 @@ const CreateReviewForm = ({recordId, mediaType}: Props) => {
                 </DialogHeader>
             </DialogContent>
         </Dialog>
-
     )
 }
 export default CreateReviewForm
+

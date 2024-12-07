@@ -54,7 +54,7 @@ export const SpokenLanguageSchema = z.object({
 // Main MovieDetail schema
 export const movieDetailSchema = z.object({
     adult: z.boolean(),
-    backdrop_path: z.string(),
+    backdrop_path: z.string().nullable(),
     belongs_to_collection: BelongsToCollectionSchema.nullable(), // Optional or null
     budget: z.number(),
     genres: GenreSchema.array(),
@@ -66,7 +66,7 @@ export const movieDetailSchema = z.object({
     original_title: z.string(),
     overview: z.string(),
     popularity: z.number(),
-    poster_path: z.string(),
+    poster_path: z.string().nullable(),
     production_companies: ProductionCompanySchema.array().nullable(),
     production_countries: ProductionCountrySchema.array(),
     release_date: z.string(),

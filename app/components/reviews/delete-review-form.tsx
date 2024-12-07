@@ -19,13 +19,19 @@ const DeleteReviewForm = ({reviewId}: Props) => {
         }
     });
 
-    if (!userId) return;
+    if (!userId) return null;
 
     return (
-        <AlertDialogAction onClick={() => deleteReview({
-            reviewId,
-            userId
-        })} className={'bg-red-500 text-white'}>Continue</AlertDialogAction>
+        <AlertDialogAction
+            onClick={() => deleteReview({
+                reviewId,
+                userId
+            })}
+            className="bg-red-500 text-white hover:bg-red-600 focus:ring-red-500 text-sm sm:text-base py-2 px-4"
+        >
+            Continue
+        </AlertDialogAction>
     )
 }
 export default DeleteReviewForm
+

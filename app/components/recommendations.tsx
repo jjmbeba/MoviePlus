@@ -37,21 +37,22 @@ const Recommendations = async ({recordId, mediaType}: Props) => {
                 }}
                 className="w-full"
             >
-                <CarouselContent>
+                <CarouselContent className="-ml-2 md:-ml-4">
                     {recommendations.results.map((recommendation) => {
-                    const {poster_path, id, backdrop_path, media_type} = recommendation;
-                    const title = 'title' in recommendation ? recommendation.title : (recommendation as z.infer<typeof recommendationSchema>).name;
+                        const {poster_path, id, backdrop_path, media_type} = recommendation;
+                        const title = 'title' in recommendation ? recommendation.title : (recommendation as z.infer<typeof recommendationSchema>).name;
 
-                    return (
-                    <CardListItem key={id} title={title} posterPath={poster_path} backdropPath={backdrop_path}
-                                           id={id} mediaType={media_type}/>
-                )
-                })}
+                        return (
+                            <CardListItem key={id} title={title} posterPath={poster_path} backdropPath={backdrop_path}
+                                          id={id} mediaType={media_type}/>
+                        )
+                    })}
                 </CarouselContent>
-                <CarouselPrevious/>
-                <CarouselNext/>
+                <CarouselPrevious className="hidden sm:flex left-0 sm:-left-4 md:-left-6" />
+                <CarouselNext className="hidden sm:flex right-0 sm:-right-4 md:-right-6" />
             </Carousel>
         </CardList>
     )
 }
 export default Recommendations
+

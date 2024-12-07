@@ -13,7 +13,7 @@ import {RouterOutputs} from "@/trpc/routers/_app";
 import {trpc} from "@/trpc/client";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
-import {Loader} from "lucide-react";
+import { Loader } from 'lucide-react';
 import {useAuth} from "@clerk/nextjs";
 import {useRouter} from "next/navigation";
 
@@ -43,10 +43,7 @@ const EditReviewForm = ({review, setOpen}: Props) => {
 
     const {userId} = useAuth();
 
-    // 2. Define a submit handler.
     function onSubmit(values: z.infer<typeof editReviewSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
         if (!userId) return;
 
         editReview({
@@ -58,13 +55,13 @@ const EditReviewForm = ({review, setOpen}: Props) => {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <div className={'flex items-center *:w-1/2 gap-4'}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                <div className={'flex flex-col sm:flex-row sm:items-center sm:gap-4'}>
                     <FormField
                         control={form.control}
                         name="title"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className="w-full sm:w-1/2">
                                 <FormLabel>Title</FormLabel>
                                 <FormControl>
                                     <Input placeholder="Review Title goes here..." {...field} />
@@ -77,7 +74,7 @@ const EditReviewForm = ({review, setOpen}: Props) => {
                         control={form.control}
                         name="rating"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className="w-full sm:w-1/2 mt-4 sm:mt-0">
                                 <FormLabel>Rating</FormLabel>
                                 <Select onValueChange={field.onChange}
                                         defaultValue={field.value.toString()}>
@@ -109,7 +106,7 @@ const EditReviewForm = ({review, setOpen}: Props) => {
                             <FormControl>
                                 <Textarea
                                     placeholder="Tell us a little bit about yourself"
-                                    className="resize-none"
+                                    className="resize-none h-32 sm:h-40"
                                     {...field}
                                 />
                             </FormControl>
@@ -117,8 +114,8 @@ const EditReviewForm = ({review, setOpen}: Props) => {
                         </FormItem>
                     )}
                 />
-                <Button disabled={isPending} type="submit">
-                    {isPending && <Loader className={'animate-spin'}/>}
+                <Button disabled={isPending} type="submit" className="w-full sm:w-auto">
+                    {isPending && <Loader className={'animate-spin mr-2'}/>}
                     Update
                 </Button>
             </form>
@@ -126,3 +123,4 @@ const EditReviewForm = ({review, setOpen}: Props) => {
     )
 }
 export default EditReviewForm
+

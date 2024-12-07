@@ -20,7 +20,7 @@ const TvListTemplate = ({title, mediaType, tvData}: Props) => {
                 }}
                 className="w-full"
             >
-                <CarouselContent>
+                <CarouselContent className="-ml-4">
                     {tvData.map(({id, name, backdrop_path, poster_path}) => (
                         <CardListItem
                             mediaType={mediaType}

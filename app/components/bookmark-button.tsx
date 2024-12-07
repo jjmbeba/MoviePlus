@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from 'react'
 import {Button} from "@/components/ui/button";
-import {Bookmark, Loader} from "lucide-react";
+import { Bookmark, Loader } from 'lucide-react';
 import {cn} from "@/lib/utils";
 import {trpc} from "@/trpc/client";
 import {toast} from "sonner";
@@ -53,19 +53,30 @@ const BookmarkButton = ({className, recordId, mediaType, posterPath, backdropPat
     });
 
     return (
-        <Button onClick={() => createBookmark(
-            {
-                recordId,
-                backdropPath,
-                posterPath,
-                mediaType,
-                title
-            }
-        )} disabled={isPending} className={cn(className)} variant={'ghost'} size={'icon'}>
-            {isPending || isLoading ? <Loader className={'animate-spin'}/> : <Bookmark className={cn(clsx({
-                'fill-yellow-500  text-yellow-500': isBookmarked
-            }))}/>}
+        <Button
+            onClick={() => createBookmark(
+                {
+                    recordId,
+                    backdropPath,
+                    posterPath,
+                    mediaType,
+                    title
+                }
+            )}
+            disabled={isPending}
+            className={cn(className, "w-8 h-8 sm:w-10 sm:h-10")}
+            variant={'ghost'}
+            size={'icon'}
+        >
+            {isPending || isLoading ? (
+                <Loader className={'animate-spin w-4 h-4 sm:w-5 sm:h-5'}/>
+            ) : (
+                <Bookmark className={cn(clsx({
+                    'fill-yellow-500 text-yellow-500': isBookmarked
+                }), "w-4 h-4 sm:w-5 sm:h-5")}/>
+            )}
         </Button>
     )
 }
 export default BookmarkButton
+
