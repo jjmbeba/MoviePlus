@@ -2,7 +2,7 @@ import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTri
 import React from "react";
 import {cn} from "@/lib/utils";
 import {buttonVariants} from "@/components/ui/button";
-import {Filter} from "lucide-react";
+import { Filter } from 'lucide-react';
 
 const BookmarksFilterMenu = () => {
     return (
@@ -10,23 +10,24 @@ const BookmarksFilterMenu = () => {
             <SheetTrigger>
                 <div className={cn(buttonVariants({
                     variant: 'outline',
-                    size: 'icon'
+                    size: 'icon',
+                    className: "w-8 h-8 sm:w-10 sm:h-10"
                 }))}>
-                    <Filter/>
+                    <Filter className="w-4 h-4 sm:w-5 sm:h-5"/>
                 </div>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="w-[280px] sm:w-[400px]">
                 <SheetHeader>
-                    <SheetTitle>Are you absolutely sure?</SheetTitle>
-                    <SheetDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
+                    <SheetTitle className="text-lg sm:text-xl">Filter Bookmarks</SheetTitle>
+                    <SheetDescription className="text-sm sm:text-base">
+                        Use the options below to filter your bookmarks.
                     </SheetDescription>
                 </SheetHeader>
+                {/* Add filter options here */}
             </SheetContent>
         </Sheet>
-
     )
 }
 
 export default BookmarksFilterMenu
+
