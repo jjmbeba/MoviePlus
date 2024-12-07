@@ -8,7 +8,7 @@ type Props = {
 const CardList = ({ title, children }: Props) => {
     return (
         <div className="mt-6 sm:mt-8 md:mt-10">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between px-4">
                 <h2 className="font-bold text-xl sm:text-2xl">
                     {title}
                 </h2>

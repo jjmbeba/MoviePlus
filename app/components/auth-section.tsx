@@ -1,13 +1,13 @@
-import React from 'react'
-import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
+import Link from 'next/link';
+import {buttonVariants} from '@/components/ui/button';
 import {useAuth, UserButton} from "@clerk/nextjs";
 
 interface AuthSectionProps {
     isMobile?: boolean;
+    onAuthAction?: () => void;
 }
 
-const AuthSection = ({ isMobile = false }: AuthSectionProps) => {
+const AuthSection = ({ isMobile = false, onAuthAction }: AuthSectionProps) => {
     const {isSignedIn} = useAuth();
 
     return (
@@ -22,6 +22,7 @@ const AuthSection = ({ isMobile = false }: AuthSectionProps) => {
                             variant: 'outline',
                             className: isMobile ? 'w-full' : ''
                         })}
+                        onClick={onAuthAction}
                     >
                         Register
                     </Link>
@@ -31,6 +32,7 @@ const AuthSection = ({ isMobile = false }: AuthSectionProps) => {
                             variant: isMobile ? 'default' : 'link',
                             className: isMobile ? 'w-full' : ''
                         })}
+                        onClick={onAuthAction}
                     >
                         Login
                     </Link>
@@ -41,3 +43,4 @@ const AuthSection = ({ isMobile = false }: AuthSectionProps) => {
 }
 
 export default AuthSection;
+

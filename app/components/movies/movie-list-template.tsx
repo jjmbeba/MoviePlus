@@ -20,7 +20,7 @@ const MovieListTemplate = ({ title, mediaType, movieData }: Props) => {
                 }}
                 className="w-full"
             >
-                <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselContent className="-ml-4">
                     {movieData.map(({ id, title, backdrop_path, poster_path }) => (
                         <CardListItem
                             mediaType={mediaType}
@@ -32,8 +32,8 @@ const MovieListTemplate = ({ title, mediaType, movieData }: Props) => {
                         />
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="hidden sm:flex left-0 sm:-left-4 md:-left-6" />
-                <CarouselNext className="hidden sm:flex right-0 sm:-right-4 md:-right-6" />
+                <CarouselPrevious className="hidden sm:flex left-2 sm:left-0" />
+                <CarouselNext className="hidden sm:flex right-2 sm:right-0" />
             </Carousel>
         </CardList>
     )

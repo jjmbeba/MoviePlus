@@ -22,15 +22,15 @@ const CardListItem = async ({ title, id, mediaType, posterPath, backdropPath }: 
     const imageUrl = posterPath === '' ? 'https://placehold.co/228x341.jpg' : generateImageUrl(posterPath);
 
     return (
-        <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5">
-            <Card className="relative w-full">
+        <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 pl-4 pr-4 pb-4">
+            <Card className="relative w-full overflow-hidden">
                 <div className="aspect-[2/3] relative">
                     <Image
-                        className="rounded-xl object-cover"
+                        className="rounded-t-xl object-cover"
                         src={imageUrl}
                         alt={title}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                        sizes="(max-width: 640px) 90vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, (max-width: 1280px) 23vw, 18vw"
                     />
                     {userId && (
                         <BookmarkButton
@@ -39,7 +39,7 @@ const CardListItem = async ({ title, id, mediaType, posterPath, backdropPath }: 
                             recordId={id}
                             backdropPath={backdropPath ?? ''}
                             posterPath={posterPath ?? ''}
-                            className="absolute top-2 right-2"
+                            className="absolute top-2 right-2 z-10"
                         />
                     )}
                 </div>
@@ -50,7 +50,7 @@ const CardListItem = async ({ title, id, mediaType, posterPath, backdropPath }: 
                     variant: 'link'
                 })} w-full justify-start px-0 mt-2`}
             >
-                <h2 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-sm sm:text-base">
+                <h2 className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-base sm:text-sm md:text-base">
                     {title}
                 </h2>
             </Link>

@@ -7,19 +7,19 @@ import AuthSection from "@/app/components/auth-section";
 import {redirect, usePathname} from "next/navigation";
 import {EXCLUDED_NAV_ROUTES} from "@/constants";
 import {Button} from "@/components/ui/button";
-import { Bookmark, CornerDownLeft } from 'lucide-react';
+import {Bookmark, CornerDownLeft, Menu, X} from 'lucide-react';
 import {clsx} from "clsx";
 import Link from "next/link";
 import {useAuth} from "@clerk/nextjs";
 import {Input} from "@/components/ui/input";
-import { Menu, X } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {Sheet, SheetContent, SheetTrigger} from "@/components/ui/sheet";
 
 const Navbar = () => {
     const pathname = usePathname();
     const {userId} = useAuth();
     const [search, setSearch] = useState("");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
 
     if (EXCLUDED_NAV_ROUTES.includes(pathname)) return null;
 
@@ -96,7 +96,7 @@ const Navbar = () => {
                                         />
                                         <CornerDownLeft className="h-4 w-4 absolute top-1/2 -translate-y-1/2 right-3" />
                                     </div>
-                                    <NavLinks />
+                                    <NavLinks onLinkClick={() => setMobileMenuOpen(false)} />
                                     {userId && (
                                         <Button
                                             className={clsx("w-full justify-start", {
@@ -104,6 +104,7 @@ const Navbar = () => {
                                             })}
                                             variant="ghost"
                                             asChild
+                                            onClick={() => setMobileMenuOpen(false)}
                                         >
                                             <Link href="/bookmarks">
                                                 <Bookmark className="mr-2 h-4 w-4" />
@@ -113,7 +114,7 @@ const Navbar = () => {
                                     )}
                                 </div>
                                 <div className="mt-auto">
-                                    <AuthSection isMobile />
+                                    <AuthSection isMobile onAuthAction={() => setMobileMenuOpen(false)} />
                                 </div>
                             </div>
                         </SheetContent>
