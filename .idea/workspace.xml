@@ -6,24 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="712000e7-e2ed-4bda-82c4-68c27ccccbc4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/back-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/back-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/bookmark-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/bookmark-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/collections.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/collections.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/movies/movie-stats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/movies/movie-stats.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/recommendations.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/recommendations.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/add-review-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/add-review-button.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/create-review-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/create-review-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/delete-review-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/delete-review-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/edit-review-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/edit-review-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/review-actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/review-actions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/review-list-item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/review-list-item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/reviews-list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/reviews-list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/reviews/star-rating.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/reviews/star-rating.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/theme-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/theme-provider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/tv/tv-list-template.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/tv/tv-list-template.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/movie/[id]/[slug]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/movie/[id]/[slug]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trpc/schemas/movies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/trpc/schemas/movies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +81,7 @@
       <updated>1732649657086</updated>
       <workItem from="1732649658529" duration="70965000" />
       <workItem from="1733165065339" duration="30895000" />
-      <workItem from="1733581706342" duration="5295000" />
+      <workItem from="1733581706342" duration="6049000" />
     </task>
     <servers />
   </component>

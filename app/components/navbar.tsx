@@ -99,7 +99,7 @@ const Navbar = () => {
                                     <NavLinks onLinkClick={() => setMobileMenuOpen(false)} />
                                     {userId && (
                                         <Button
-                                            className={clsx("w-full justify-start", {
+                                            className={clsx("w-full justify-start pl-0", {
                                                 'text-orange-500': pathname === '/bookmarks'
                                             })}
                                             variant="ghost"
@@ -107,7 +107,6 @@ const Navbar = () => {
                                             onClick={() => setMobileMenuOpen(false)}
                                         >
                                             <Link href="/bookmarks">
-                                                <Bookmark className="mr-2 h-4 w-4" />
                                                 Bookmarks
                                             </Link>
                                         </Button>

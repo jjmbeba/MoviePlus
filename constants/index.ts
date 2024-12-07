@@ -8,7 +8,7 @@ export const NAVLINKS = [
         text: "Movies"
     }, {
         route: "/tv",
-        text: "TV Series"
+        text: "TV"
     }
 ];
 
