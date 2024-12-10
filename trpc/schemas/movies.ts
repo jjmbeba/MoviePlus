@@ -82,12 +82,12 @@ export const movieDetailSchema = z.object({
 });
 
 export const partSchema = z.object({
-    backdrop_path: z.string(),
+    backdrop_path: z.string().nullable(),
     id: z.number(),
     title: z.string(),
     original_title: z.string(),
     overview: z.string(),
-    poster_path: z.string(),
+    poster_path: z.string().nullable(),
     media_type: z.string(),
     adult: z.boolean(),
     original_language: z.string(),
