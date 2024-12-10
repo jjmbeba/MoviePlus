@@ -30,7 +30,7 @@ export const LastEpisodeToAirSchema = z.object({
     runtime: z.number(),
     season_number: z.number(),
     show_id: z.number(),
-    still_path: z.string(),
+    still_path: z.string().nullable(),
 });
 
 export const NextEpisodeToAirSchema = z.object({
