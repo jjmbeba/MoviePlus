@@ -27,7 +27,7 @@ const Collections = async ({name, collectionId}: Props) => {
             >
                 <CarouselContent className="-ml-2 md:-ml-4">
                     {collection.parts.map(({title, id, poster_path, backdrop_path, media_type}) => (
-                        <CardListItem key={id} title={title} posterPath={poster_path} backdropPath={backdrop_path}
+                        <CardListItem key={id} title={title} posterPath={poster_path ?? ''} backdropPath={backdrop_path ?? ''}
                                       id={id} mediaType={media_type}/>
                     ))}
                 </CarouselContent>
