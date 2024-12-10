@@ -46,7 +46,7 @@ export const NextEpisodeToAirSchema = z.object({
     runtime: z.number().nullable(),
     season_number: z.number(),
     show_id: z.number(),
-    still_path: z.string(),
+    still_path: z.string().nullable(),
 });
 
 // Schema for Network
