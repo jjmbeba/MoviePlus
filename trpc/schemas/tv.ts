@@ -33,6 +33,22 @@ export const LastEpisodeToAirSchema = z.object({
     still_path: z.string(),
 });
 
+export const NextEpisodeToAirSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    overview: z.string(),
+    vote_average: z.number(),
+    vote_count: z.number(),
+    air_date: z.string().nullable(),
+    episode_number: z.number(),
+    episode_type: z.string(),
+    production_code: z.string(),
+    runtime: z.number().nullable(),
+    season_number: z.number(),
+    show_id: z.number(),
+    still_path: z.string(),
+});
+
 // Schema for Network
 export const NetworkSchema = z.object({
     id: z.number(),
@@ -81,7 +97,7 @@ export const seriesDetailSchema = z.object({
     last_air_date: z.string(),
     last_episode_to_air: LastEpisodeToAirSchema,
     name: z.string(),
-    next_episode_to_air: z.null(), // Explicit null
+    next_episode_to_air: NextEpisodeToAirSchema.nullable(), // Explicit null
     networks: NetworkSchema.array(),
     number_of_episodes: z.number(),
     number_of_seasons: z.number(),
