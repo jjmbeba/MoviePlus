@@ -24,8 +24,8 @@ export const movieListSchema = z.object({
 export const BelongsToCollectionSchema = z.object({
     id: z.number(),
     name: z.string(),
-    poster_path: z.string(),
-    backdrop_path: z.string(),
+    poster_path: z.string().nullable(),
+    backdrop_path: z.string().nullable(),
 });
 
 export const GenreSchema = z.object({
@@ -104,20 +104,20 @@ export const collectionDetailSchema = z.object({
     id: z.number(),
     name: z.string(),
     overview: z.string(),
-    poster_path: z.string(),
-    backdrop_path: z.string(),
+    poster_path: z.string().nullable(),
+    backdrop_path: z.string().nullable(),
     parts: partSchema.array(),
 });
 
 export const mediaTypeSchema = z.enum(['movie', 'tv']);
 
 export const recommendationSchema = z.object({
-    backdrop_path: z.string(),
+    backdrop_path: z.string().nullable(),
     id: z.number(),
     title: z.string(),
     original_title: z.string(),
     overview: z.string(),
-    poster_path: z.string(),
+    poster_path: z.string().nullable(),
     media_type: mediaTypeSchema,
     adult: z.boolean(),
     original_language: z.string(),

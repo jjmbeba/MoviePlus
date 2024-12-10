@@ -43,7 +43,7 @@ const Recommendations = async ({recordId, mediaType}: Props) => {
                         const title = 'title' in recommendation ? recommendation.title : (recommendation as z.infer<typeof recommendationSchema>).name;
 
                         return (
-                            <CardListItem key={id} title={title} posterPath={poster_path} backdropPath={backdrop_path}
+                            <CardListItem key={id} title={title} posterPath={poster_path ?? ''} backdropPath={backdrop_path ?? ''}
                                           id={id} mediaType={media_type}/>
                         )
                     })}
